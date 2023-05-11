@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "../abstract/_variables.scss";
+body{
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5; 
+    color: $color-white; 
+}
+.navbar{
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: .01em;
+    &_greetings{
+        font-size: 1em;
+        font-weight: 400;
+        letter-spacing: .01em;
+    }
+}
+@media (max-width: $small-devices) {
+    .navbar{
+        margin: 10px 20px;
+        font-size: 1.1em;
+        &_greetings{
+            font-size: 1em;
+            font-weight: 400;
+        }
+    } 
+}

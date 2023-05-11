@@ -1,0 +1,4 @@
+@import 'variables';
+@mixin gradient-bg {
+    background: linear-gradient(273.78deg, $color-light-blue 8.84%, $color-light-pink 47.63%, #F495FB 102.85%);
+}

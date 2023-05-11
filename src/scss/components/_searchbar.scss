@@ -1,0 +1,31 @@
+@import '../abstract/variables.scss';
+@import '../base/typography.scss';
+@import "../base/_reset.scss";
+.searchbar{
+    &_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $color-dark-primary;
+        color: $color-white; 
+        border-radius: 10px;
+        & span{
+            color: $color-gray;
+            margin: 0 .5rem;
+        }
+        & input{
+            padding: 13px 20px;
+            text-align: left;
+            min-width: 300px;
+        }
+    }
+}
+@media (max-width: $small-devices) {
+    .searchbar{
+        &_container{
+            margin-top: 20px;
+            order: 4;
+            flex-grow: 4;
+        }
+    }
+}

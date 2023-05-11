@@ -1,0 +1,25 @@
+@import "../abstract/variables.scss";
+.filterbar{
+    margin: 13px 0;
+    background-color: $color-dark-primary;
+    padding: 10px 20px;
+    border-radius: 10px; 
+
+
+    &_mode{
+        border-radius: 5px; 
+        margin: 0 10px;
+        padding: 12px 20px;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background .1s ease-in-out;
+        &:hover{
+            background-color: $color-black;
+
+        }
+       
+    }
+  &--active{
+    background-color: $color-black;
+  }
+}

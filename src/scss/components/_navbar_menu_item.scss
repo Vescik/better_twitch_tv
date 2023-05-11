@@ -1,0 +1,24 @@
+@import '../abstract/variables.scss';
+@import '../abstract/mixins.scss';
+@import '../base/typography.scss';
+@import "../base/_reset.scss";
+
+.router-link-exact-active {
+    color: $color-white !important;
+    @include gradient-bg;
+  }
+  .navbar_menu{
+    &_item{
+        padding: .8rem 1.2rem;
+        color: $color-gray;
+        border-radius: 10px;
+
+        transition: background .3s ease-in-out;
+      
+        &:hover{
+          @include gradient-bg;
+          color: $color-white;
+        }
+       
+    }
+  }

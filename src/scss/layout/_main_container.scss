@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    width: 100%;
+
+    flex-direction: row;
+}
+.main{
+    &_container{
+        height: 100vh;
+
+        background-color: $color-white; 
+    } 
+}
+.hero{
+    &_container{
+        height: 85vh;
+        margin-left: 40px;
+
+    } 
+}

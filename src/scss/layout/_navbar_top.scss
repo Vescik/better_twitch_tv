@@ -1,0 +1,44 @@
+@import '../abstract/variables.scss';
+@import '../base/typography.scss';
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: $margin-base-half $margin-base 4rem $margin-base-half;
+    &_logo{
+        display: flex;
+        align-items: center;
+        &_img{
+            margin-right: $margin-base-half; 
+        }
+    }
+}
+.user{
+    &_avatar{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+}
+@media (max-width: $small-devices) {
+    .navbar{
+        display: flex;
+        flex-wrap: wrap;
+        &_logo{
+            order: 1;
+            &_img{
+                width: 30px;
+                height: 30px;
+                margin-right: .5em;
+            }
+        }
+        &_greetings{
+            order: 2;
+        }    }
+    .user_avatar{
+        order: 3;
+        width: 40px;
+        height: 40px;
+    } 
+}

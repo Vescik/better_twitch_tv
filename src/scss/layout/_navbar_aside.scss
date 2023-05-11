@@ -1,0 +1,14 @@
+.navbar_menu{
+    display: flex;
+    flex-direction: column;
+    & li {
+        margin: 15px;
+    }
+    &_item{
+        display: flex;
+        align-items: center;
+        & span:first-of-type{
+            margin-right: 10px;
+        }
+    }
+}

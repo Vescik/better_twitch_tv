@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="hero_container">
+    <CategoryFilter 
+    :filterState="filterState"
+    @FilterChange="filterState = $event"
+    />
+   <ContentContainer />
+   
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-@Options({
+import { defineComponent,ref, computed,onBeforeMount } from "vue";
+import CategoryFilter from "../components/CategoryFilter.vue";
+import ContentContainer from "@/components/ContentContainer.vue";
+export default defineComponent({
+  name: "HomeView",
   components: {
-    HelloWorld,
+    CategoryFilter,
+    ContentContainer,
+},
+  setup() {
+    const filterState = ref("channels");
+    return {filterState};
   },
-})
-export default class HomeView extends Vue {}
+});
 </script>
+<style  lang="scss">
+@import "../scss/abstract/_variables.scss";
+</style>
