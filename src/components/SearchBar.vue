@@ -1,7 +1,7 @@
 <template lang="html">
-  <form class="searchbar_container">
+  <form @submbit.prevent class="searchbar_container">
     <span class="material-symbols-outlined"> search </span>
-    <input
+    <input @submbit.prevent
       type="text"
       class="searchbar_input"
       placeholder="Search for a streamer"

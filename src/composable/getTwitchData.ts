@@ -15,7 +15,7 @@ const getTwitchData = () => {
           })
           .catch((err:string) => {
             console.log(err);
-          });
+          }); 
       
       }
       return {fetchTwitchData}
