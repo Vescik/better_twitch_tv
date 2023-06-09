@@ -1,0 +1,48 @@
+@import "../abstract/variables";
+.channel{
+    &_container{
+        margin-top: 50px;
+        width: 350px;
+        margin: 10px;
+        height: 300px;
+        border-radius: 10px; 
+        background-color: $color-dark-primary;
+        display: flex;
+        flex-direction: column; 
+    }
+
+    &_avatar{
+        height: 50px;
+        width: 50px;
+        margin: 0 10px;
+        border-radius: 50%;
+    }
+    &_thumbnail{
+        border-radius: 20px;
+    }
+    &_info{
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+    }
+    &_data{
+        display: flex;
+        & p {
+            margin: 0 10px 0 0;
+            &:last-of-type{
+                background-color: red;
+                padding: 0 5px;
+                border-radius: 6px;
+                font-weight: 600;
+            } 
+        }
+    
+    }
+    &_category{ 
+        background-color: rgb(68, 65, 65);
+        border-radius: 8px;
+        padding: 1px 5px;
+        margin: 4px 0;
+        display: inline-block;
+    } 
+}

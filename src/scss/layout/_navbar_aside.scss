@@ -2,13 +2,14 @@
     display: flex;
     flex-direction: column;
     & li {
-        margin: 15px;
+        width: 100%;
+        margin: 10px;
     }
     &_item{
         display: flex;
         align-items: center;
         & span:first-of-type{
-            margin-right: 10px;
+            margin-right: 20px;
         }
     }
 }
