@@ -15,14 +15,18 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 import {useLanguagesStore} from '@/store/LanguageStore'
 import fetchChannels from '@/composable/getChannels'
+import { useChannels } from "@/store/ChannelStore";
 
 
 
 
-    onBeforeMount(()=> getChannelsData(langStore.selectedLang))
+  
     const langStore = useLanguagesStore()
+
+
     const {getChannelsData} = fetchChannels() 
-    
+    onBeforeMount(()=> getChannelsData(langStore.selectedLang))
+  
     const filterState = ref("channels");
 
 
