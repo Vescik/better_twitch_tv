@@ -15,7 +15,6 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 import {useLanguagesStore} from '@/store/LanguageStore'
 import fetchChannels from '@/composable/getChannels'
-import { useChannels } from "@/store/ChannelStore";
 
 
 
