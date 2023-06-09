@@ -2,7 +2,7 @@
     <div >
         <div v-for="channel in channelStore.channelList" :key="channel.user_id">
             <SingleChannel
-                :user="channel.user_id"
+                :userAvatar="getAvatar(channel.user_id)"
                 :thumbnailURL="formatThumbnail(channel)"
                 :channelName="channel.user_name"
                 :channelTitleShorted="formatTtile(channel)"
@@ -19,11 +19,19 @@
     import fetchUser from '@/composable/getSingleUser'
     import {ref,computed,} from 'vue'; 
 
-   
-    const {getUserData} = fetchUser()
-
+    const { getUserData } = fetchUser();
     const channelStore = useChannels()
-    
+
+    const getAvatar = computed(()=>{
+        return async (userID:string)=>{
+            let user = await getUserData(userID)
+            console.log(user[0].profile_image_url);
+            
+            return user[0].profile_image_url
+            
+        }
+    })
+  
     const formatThumbnail = computed(() => {
         return (channel:{thumbnail_url:string}) => {
            return channel.thumbnail_url.replace("{width}x{height}", "320x180");

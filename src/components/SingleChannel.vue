@@ -2,7 +2,8 @@
     <div class="channel_container">
       <img :src="props.thumbnailURL" alt="channel thumbnail">
       <div class="channel_info">
-          <!-- <img :src="user.display_name" alt="channel avatar" class="channel_avatar"> -->
+            <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
+
         <div class="channel_details">
           <p :title="channelTitle" class="channel_title">{{ props.channelTitleShorted }}</p>
           <p class="channel_name">{{ props.channelName }}</p>
@@ -18,8 +19,19 @@
   <script setup lang="ts">
   import { defineProps, ref,onBeforeMount,watch } from 'vue';
   import fetchUser from '@/composable/getSingleUser';
-  import { useUserStore } from '@/store/UserStore';
-  
+  interface TwitchUser {
+  id: string;
+  login: string;
+  display_name: string;
+  type: string;
+  broadcaster_type: string;
+  description: string;
+  profile_image_url: string;
+  offline_image_url: string;
+  view_count: number;
+  created_at: string;
+}
+
   const props = defineProps({
     thumbnailURL: {
       type: String,
@@ -45,25 +57,29 @@
       type: String,
       required: true
     },
-    user: { 
-      type: String,
+    userAvatar: { 
+      type: Object as () => Promise<TwitchUser>, // Declare it as Promise<TwitchUser>
       required: true
     }
   });
+  console.log(props.userAvatar);
   
-  const { getUserData } = fetchUser();
-  const userStore = useUserStore()
+  const userAvatar = ref<TwitchUser | null>(
+null); // Use a ref to hold the userAvatar value
 
+onBeforeMount(async () => {
+  try {
+    const avatar = await props.userAvatar; // Await the userAvatar promise
+    userAvatar.value = avatar; // Assign the resolved value to the ref
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+watch(userAvatar, (newAvatar) => {
+  console.log(newAvatar); // Log the newAvatar value when it changes
+});
   
-    const {user } = getUserData(props.user)
-  user.forEach(element => {
-    console.log(element);
-    
-  });
-    
-
-
-
   </script>
   
   <style lang="css">
