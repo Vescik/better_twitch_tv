@@ -1,5 +1,6 @@
 import axios from "axios";
 const getAuth = () => {
+  
     const auth = async () => {
         const GET_TOKEN = "https://id.twitch.tv/oauth2/token";
           const data = {

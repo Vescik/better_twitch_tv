@@ -29,17 +29,18 @@ const fetchChannels = () => {
 
 
   const getChannelsData = async (SELECTED_LANG:string) => {
+    
     const USER_URL = `https://api.twitch.tv/helix/streams?language=${SELECTED_LANG}`;
 
-    auth()
-      .then((token: string) => fetchTwitchData(token, USER_URL))
-      .then((data:TwitchStream[]) => {
-        channelStore.channelList = data
-        console.log(data);
-        
-      }) 
-      .catch((err: string) => console.log(err));
-  };
+    try{
+      const token = await auth();
+      const data = await fetchTwitchData(token, USER_URL);
+      channelStore.channelList = data
+      console.log(data);
+    }catch(err){
+      console.log(err);
+    }
+  } 
   
   return { channels, getChannelsData };  
 };
