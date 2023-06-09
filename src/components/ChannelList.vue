@@ -1,6 +1,6 @@
 <template lang="html">
-    <div >
-        <div v-for="channel in channelStore.channelList" :key="channel.user_id">
+    <div class="streams">
+        <div v-for="channel in channelStore.channelList" :key="channel.user_id" >
             <SingleChannel
                 :userAvatar="getAvatar(channel.user_id)"
                 :thumbnailURL="formatThumbnail(channel)"
@@ -17,7 +17,7 @@
     import SingleChannel from './SingleChannel.vue';
     import { useChannels } from '@/store/ChannelStore'
     import fetchUser from '@/composable/getSingleUser'
-    import {ref,computed,} from 'vue'; 
+    import {computed,} from 'vue'; 
 
     const { getUserData } = fetchUser();
     const channelStore = useChannels()
@@ -39,7 +39,7 @@
     }); 
     const formatTtile = computed(() => { 
         return (channel:{title:string}) => {
-           return channel.title.slice(0, 32) + " . . .";
+           return channel.title.slice(0, 25) + "...";
       };
     });
 
@@ -47,5 +47,8 @@
 
 </script>
 <style lang="scss">
-    
+    .streams{
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>

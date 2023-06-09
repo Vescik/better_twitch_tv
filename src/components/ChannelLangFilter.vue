@@ -6,11 +6,9 @@
             {{ lang.name }}
         </option>
     </select>
-    <div>Selected: {{ langStore.selectedLang }}</div>
 </template>
 <script setup lang="ts">
     import { useLanguagesStore } from '@/store/LanguageStore';
-    import fetchChannels from '@/composable/getChannels'; 
     import { useChannels } from '@/store/ChannelStore';
     import {watch} from 'vue'
 
