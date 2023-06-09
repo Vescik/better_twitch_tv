@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia';
 import getChannels from "@/composable/getChannels";
-import { useLanguagesStore } from './LanguageStore';
 import { ref } from 'vue';
 //import { ref,computed } from 'vue'
 
@@ -24,7 +23,6 @@ interface TwitchStream {
 
 export const useChannels = defineStore("useChannelStore",()=>{
    const {channels,getChannelsData} = getChannels();
-   const langStore = useLanguagesStore()
    const channelList = ref<TwitchStream[]>([])
 
   
