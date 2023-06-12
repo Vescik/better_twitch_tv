@@ -14,8 +14,6 @@ const fetchUser = () => {
       const token = await auth();
       const data = await fetchTwitchData(token, USER_URL);
       user.value = data
-  
-      console.log(data);
     }catch(err){
       console.log(err);
     }

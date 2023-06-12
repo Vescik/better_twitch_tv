@@ -40,7 +40,8 @@ const fetchChannels = () => {
     }catch(err){
       console.log(err);
     }
-  } 
+
+  };
   
   return { channels, getChannelsData };  
 };
