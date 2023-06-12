@@ -4,7 +4,7 @@ export const useModalStore = defineStore("useModalStore", () => {
     const modal = ref(false);
     const modalData = ref({});
     
-    const openModal = (data) => {
+    const openModal = (data:string) => {
         modal.value = true;
         modalData.value = data;
     };
