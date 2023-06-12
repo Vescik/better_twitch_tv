@@ -17,7 +17,7 @@
   </template>
   
   <script setup lang="ts">
-  import { defineProps, ref,onBeforeMount,watch } from 'vue';
+  import { defineProps, ref,onBeforeMount } from 'vue';
   
   const props = defineProps({
     thumbnailURL: {
@@ -49,7 +49,6 @@
       required: true
     }
   });
-  console.log(props.userAvatar);
   
   const userAvatar = ref<string | null>(
 null); // Use a ref to hold the userAvatar value
@@ -63,9 +62,7 @@ onBeforeMount(async () => {
   }
 });
 
-watch(userAvatar, (newAvatar) => {
-  console.log(newAvatar); // Log the newAvatar value when it changes
-});
+
   
   </script>
   

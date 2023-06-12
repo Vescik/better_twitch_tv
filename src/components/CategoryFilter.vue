@@ -2,15 +2,15 @@
     <div class="filterbar">
         <button 
         class="filterbar_mode"
-        :class="{'filterbar--active': props.filterState === 'channels'}"
-        @click="updateFilter('channels')"
+        :class="{'filterbar--active': categFilterStore.filterState === 'channels'}"
+        @click="categFilterStore.changeCateg('channels')" 
         >
         Kanały</button>
 
         <button 
         class="filterbar_mode"
-        :class="{'filterbar--active': props.filterState === 'categories'}"
-        @click="updateFilter('categories')"
+        :class="{'filterbar--active': categFilterStore.filterState === 'categories'}"
+        @click="categFilterStore.changeCateg('categories')"
         >
         Kategorie</button>
         
@@ -19,18 +19,11 @@
 <script 
 lang="ts"
 setup>
-    import { defineEmits,defineProps } from 'vue'
+    import { useCategFilter } from '@/store/CategFilterStore';
 
-    const props = defineProps({
-        filterState: {
-            type: String,
-            required: true,
-        }
-    })
-    const emit = defineEmits(['FilterChange'])
-    const updateFilter = (by:string)=>{
-            emit('FilterChange', by)
-        }
+    const categFilterStore = useCategFilter()
+  
+
 
 </script>
 <style lang="scss">

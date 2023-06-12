@@ -1,6 +1,8 @@
 <template lang="html">
-    <div class="streams">
-        <div v-for="channel in channelStore.channelList" :key="channel.user_id" >
+    <div  v-if="categFilterStore.filterState === 'channels'" class="streams">
+        <div 
+        v-for="channel in channelStore.channelList" 
+        :key="channel.user_id" >
             <SingleChannel
                 :userAvatar="getAvatar(channel.user_id)"
                 :thumbnailURL="formatThumbnail(channel)"
@@ -12,29 +14,42 @@
             />
         </div>
     </div>
+    <div class="streams" v-else>
+        <SingleCategory
+        v-for="categ in categoryStore.categoryList"
+        :key="categ.id"
+        :categoryName="categ.name"
+        :categoryImg="categ.box_art_url"
+        />
+    </div>
+
 </template>
 <script setup lang="ts">
     import SingleChannel from './SingleChannel.vue';
+    import SingleCategory from './SingleCategory.vue';
     import { useChannels } from '@/store/ChannelStore'
+    import { useCategories } from '@/store/CategoryStore'
     import fetchUser from '@/composable/getSingleUser'
-    import {computed,} from 'vue'; 
+    import {computed,onBeforeMount} from 'vue'; 
+    import { useCategFilter } from '@/store/CategFilterStore';
+
+ 
+    const categFilterStore = useCategFilter()
+    const categoryStore = useCategories()
 
     const { getUserData } = fetchUser();
     const channelStore = useChannels()
 
     const getAvatar = computed(()=>{
         return async (userID:string)=>{
-            let user = await getUserData(userID)
-            console.log(user[0].profile_image_url);
-            
+            let user:{profile_image_url:string}[] = await getUserData(userID)            
             return user[0].profile_image_url
             
         }
     })
-  
-    const formatThumbnail = computed(() => {
-        return (channel:{thumbnail_url:string}) => {
-           return channel.thumbnail_url.replace("{width}x{height}", "320x180");
+    const formatThumbnail = computed( () => {
+        return  ( channel:{thumbnail_url:string}) => {
+           return  channel.thumbnail_url.replace("{width}x{height}", "320x180");
       };
     }); 
     const formatTtile = computed(() => { 
