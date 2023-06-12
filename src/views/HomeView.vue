@@ -1,10 +1,7 @@
 <template>
   <div class="hero_container">
-    <CategoryFilter 
-    :filterState="filterState"
-    @FilterChange="filterState = $event"
-    />
-   <ContentContainer />
+    <CategoryFilter/>
+   <ContentContainer/>
    
   </div>
 </template>
@@ -15,19 +12,20 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 import {useLanguagesStore} from '@/store/LanguageStore'
 import fetchChannels from '@/composable/getChannels'
+import { useCategories } from "@/store/CategoryStore";
 
 
 
 
   
     const langStore = useLanguagesStore()
-
+    const categoryStore = useCategories()
 
     const {getChannelsData} = fetchChannels() 
-    onBeforeMount(()=> getChannelsData(langStore.selectedLang))
-  
-    const filterState = ref("channels");
+    onBeforeMount(()=> {getChannelsData(langStore.selectedLang)
 
+  console.log(categoryStore.categoryList);
+    })
 
 </script>
 <style  lang="scss">
