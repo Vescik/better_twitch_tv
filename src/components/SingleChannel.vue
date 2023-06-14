@@ -1,6 +1,9 @@
 <template lang="html">
     <div class="channel_container">
-      <img :src="props.thumbnailURL" alt="channel thumbnail" class="channel_thumbnail">
+      <img :src="props.thumbnailURL" 
+            alt="channel thumbnail" 
+            class="channel_thumbnail"
+            @click="streamModalStore.openModal(props)">
       <div class="channel_info">
             <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
 
@@ -15,10 +18,12 @@
       </div>
     </div>
   </template>
-  
+   
   <script setup lang="ts">
   import { defineProps, ref,onBeforeMount } from 'vue';
+  import { useModalStore } from '@/store/StreamModalStore';
   
+  const streamModalStore = useModalStore();
   const props = defineProps({
     thumbnailURL: {
       type: String,
@@ -47,12 +52,14 @@
     userAvatar: { 
       type: Object as () => Promise<string>, // Declare it as Promise<TwitchUser>
       required: true
+    },
+    userID:{
+      type: String,
+      required: true
     }
   });
   
-  const userAvatar = ref<string | null>(
-null); // Use a ref to hold the userAvatar value
-
+  const userAvatar = ref<string | null>(null); // Use a ref to hold the userAvatar value
 onBeforeMount(async () => {
   try {
     const avatar = await props.userAvatar; // Await the userAvatar promise

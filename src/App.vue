@@ -10,19 +10,17 @@
     <RouterView/>
   </main>
   </div>
+  <StreamModal v-if="streamModalStore.showModal"></StreamModal>
+  
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import NavbarMain from "./components/NavbarMain.vue";
 import NavbarMenu from "./components/NavbarMenu.vue";
-export default defineComponent({
-  name: "App",
-  components: {
-    NavbarMain,
-    NavbarMenu,
-  },
-});
+import StreamModal from "./components/StreamModal.vue";
+import {useModalStore} from "./store/StreamModalStore"
+
+const streamModalStore = useModalStore()
 </script>
 <style lang="scss">
 @import "./scss/abstract/_variables.scss";

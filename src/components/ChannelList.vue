@@ -4,6 +4,7 @@
         v-for="channel in channelStore.channelList" 
         :key="channel.user_id" >
             <SingleChannel
+                :userID="channel.user_id"
                 :userAvatar="getAvatar(channel.user_id)"
                 :thumbnailURL="formatThumbnail(channel)"
                 :channelName="channel.user_name"

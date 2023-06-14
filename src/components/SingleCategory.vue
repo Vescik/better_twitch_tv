@@ -11,7 +11,6 @@
 <script setup lang="ts">
 import { ref,defineProps,computed,onBeforeMount } from "vue";
 import { useCategories } from "@/store/CategoryStore";
-import { def } from "@vue/shared";
 
 const categoryStore = useCategories()
 const props = defineProps({
@@ -42,5 +41,6 @@ const formatAvatar = computed(() => {
 
 </script>
 <style lang="scss">
+@import "../scss/components/single-category";
 
 </style>
