@@ -1,24 +1,129 @@
-# twitch_io
+<!--
+Hey, thanks for using the awesome-readme-template template.  
+If you have any enhancements, then fork this project and create a pull request 
+or just open an issue with the label "enhancement".
 
-## Project setup
+Don't forget to give this project a star for additional support ;)
+Maybe you can mention me or this repo in the acknowledgements too
+-->
+<div align="left">
+
+  <h1>TwitchSimplified</h1>
+
+
+  ## :hamburger: About the Project
+  <p>Alternative Twitch.tv UI with main <a href="https://github.com/Vescik/makdolan">Twitch.tv</a> functionalities.
+  In current state of work app offer main view where user can browse live channels with real time data that API offer.
+  At this time I'm working on functionality that allows user watch streams in app.
+  </p>
+  <p></p>
+  ## :compass: Roadmap
+
+* [x] UI for desktop with core functionalities
+* [*] CURRENT STAGE - Embeding twitch player with chat in modal component to allow user watch stream
+* [ ] Login with Twitch authorization
+* [ ] Followed channels section
+* [ ] Section where user can "pin" favorite channels
+
+</div>
+
+<br />
+
+<!-- Table of Contents -->
+# :notebook_with_decorative_cover: Table of Contents
+
+- [About the Project](#star2-about-the-project)
+  * [Tech Stack](#space_invader-tech-stack)
+  * [Features](#dart-features)
+- [Getting Started](#toolbox-getting-started)
+  * [Prerequisites](#bangbang-prerequisites)
+  * [Installation](#gear-installation)
+  * [Running Tests](#test_tube-running-tests)
+  * [Run Locally](#running-run-locally)
+  * [Deployment](#triangular_flag_on_post-deployment)
+- [Usage](#eyes-usage)
+- [Roadmap](#compass-roadmap)
+
+  
+
+<!-- About the Project -->
+
+
+
+<!-- TechStack -->
+### :space_invader: Tech Stack
+
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://www.typescriptlang.org/">Node.js</a></li>
+    <li><a href="https://nextjs.org/">Express.js</a></li>
+    <li><a href="https://nextjs.org/">TypeScript</a></li>
+    <li><a href="https://reactjs.org/">Node Cron</a></li>
+    <li><a href="https://tailwindcss.com/">Puppeteer</a></li>
+  </ul>
+</details>
+
+
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
+    <li><a href="https://mongoosejs.com/">Mongoose</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>DevOps</summary>
+  <ul>
+    <li><a href="https://www.docker.com/">Docker(In future)</a></li>
+  </ul>
+</details>
+
+
+<!-- Getting Started -->
+## 	:toolbox: Getting Started
+
+<!-- Prerequisites -->
+### :bangbang: Prerequisites
+
+This project uses npm as package manager.
+Project require createing database config file in config folder.
+
+
+
+<!-- Installation -->
+### :gear: Installation
+
+Install my-project with npm
+
+```bash
+  npm install 
+  cd my-project
 ```
-npm install
+   
+
+<!-- Run Locally -->
+### :running: Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Vescik/scrapper_service.git
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+Go to the project directory
+
+```bash
+  cd my-project
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+Install dependencies
+
+```bash
+  npm install
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<!-- Roadmap -->
+
