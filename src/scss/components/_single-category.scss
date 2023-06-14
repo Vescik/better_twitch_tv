@@ -1,0 +1,15 @@
+@import "../abstract/variables";
+
+.category{
+    &_box{
+       & img{
+        border-radius: 10px;
+        cursor: pointer;
+       }
+       width: 160px;
+       margin: 3px;
+       border-radius: 5px;
+       padding: 5px;
+    }
+
+}
