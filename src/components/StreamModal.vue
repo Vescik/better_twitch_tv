@@ -16,9 +16,9 @@ const streamModalStore = useModalStore();
 onMounted(()=> {
 
     const embed = new Twitch.TwitchEmbed('twitch-player', {
-        width: 854,
-        height: 480,
-        channel: "monstercat",
+        width: "100%",
+        height: 500,
+        channel: streamModalStore.channelData,
         layout: Twitch.TwitchEmbedLayout.VIDEO_WITH_CHAT
       });
 })
