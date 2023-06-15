@@ -3,7 +3,7 @@
       <img :src="props.thumbnailURL" 
             alt="channel thumbnail" 
             class="channel_thumbnail"
-            @click="streamModalStore.openModal(props)">
+            @click="streamModalStore.openModal(props.channelName)">
       <div class="channel_info">
             <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
 
