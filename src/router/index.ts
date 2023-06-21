@@ -2,11 +2,12 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import FollowingView from "../views/FollowingView.vue";
 import SettingsView from "../views/SettingsView.vue";
+import LoginView from "../views/LoginView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
+    path: "/home",
+    name: "Home",
     component: HomeView,
   },
   {
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/settings",
     name: "Settings",
     component: SettingsView,
+  },
+  {
+    path: "/",
+    name: "Login",
+    component: LoginView,
   },
 ];
 
