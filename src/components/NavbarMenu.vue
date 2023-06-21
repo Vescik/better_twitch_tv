@@ -1,7 +1,7 @@
 <template lang="html">
   <ul class="navbar_menu">
     <li>
-      <router-link :to="{ name: 'home' }" class="navbar_menu_item">
+      <router-link :to="{ name: 'Home' }" class="navbar_menu_item">
         <span class="material-symbols-rounded">grid_view</span>
         <span class="menu_title">Strona główna</span>
       </router-link>

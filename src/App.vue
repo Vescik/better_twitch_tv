@@ -1,16 +1,17 @@
 <template>
-  <header class="header_conteiner">
-    <NavbarMain></NavbarMain>
-  </header>
-  <div class="container">
-    <aside class="aside_menu">
-    <NavbarMenu></NavbarMenu>
-  </aside>
-  <main class="main_conteiner">
-    <RouterView/>
-  </main>
-  </div>
-  <StreamModal v-if="streamModalStore.showModal"></StreamModal>
+    <header class="header_conteiner">
+      <NavbarMain></NavbarMain>
+    </header>
+    <div class="container">
+      <aside class="aside_menu">
+      <NavbarMenu></NavbarMenu>
+    </aside>
+    <main class="main_conteiner">
+      <RouterView/>
+    </main>
+    <StreamModal v-if="streamModalStore.showModal"></StreamModal>
+    </div>
+  
   
 </template>
 
@@ -18,7 +19,10 @@
 import NavbarMain from "./components/NavbarMain.vue";
 import NavbarMenu from "./components/NavbarMenu.vue";
 import StreamModal from "./components/StreamModal.vue";
+
 import {useModalStore} from "./store/StreamModalStore"
+import {ref } from "vue";
+
 
 const streamModalStore = useModalStore()
 </script>

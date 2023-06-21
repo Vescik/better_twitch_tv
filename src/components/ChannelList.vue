@@ -31,7 +31,7 @@
     import { useChannels } from '@/store/ChannelStore'
     import { useCategories } from '@/store/CategoryStore'
     import fetchUser from '@/composable/getSingleUser'
-    import {computed,onBeforeMount} from 'vue'; 
+    import {computed} from 'vue'; 
     import { useCategFilter } from '@/store/CategFilterStore';
 
  

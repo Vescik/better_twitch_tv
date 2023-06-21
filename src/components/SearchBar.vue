@@ -1,24 +1,28 @@
 <template lang="html">
   <form @submbit.prevent class="searchbar_container">
     <span class="material-symbols-outlined"> search </span>
-    <input @submbit.prevent
+    <input @keydown.enter.prevent="getUserData(searchStore.searchName)"
       type="text"
       class="searchbar_input"
       placeholder="Search for a streamer"
-      v-model="searchValue"
+      v-model="searchStore.searchName"
     />
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent,ref } from "vue";
-export default defineComponent({
-  name: "SearchBar",
-  setup() {
-    const searchValue = ref("");
-    return {searchValue};
-  },
-});
+<script setup lang="ts">
+import {ref } from "vue";
+import {useSearchStore} from '@/store/SearchStore'
+import fetchUser from '@/composable/getSingleUser'
+
+const searchStore = useSearchStore()
+const { getUserData } = fetchUser();
+
+const testSubmit = () => {
+  console.log("test submit");
+};
+
+
 </script>
 
 <style lang="scss">
