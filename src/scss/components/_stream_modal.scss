@@ -10,7 +10,8 @@
     height: 200%;
     z-index: 0;
 }
-.stream-modal_box{
+.stream-modal{
+    &_box{
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -20,4 +21,12 @@
     height: 80%;
     background-color: $color-dark-primary;
     border-radius: 10px;
+    }
+    &_details{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    
 }
