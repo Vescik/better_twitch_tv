@@ -2,30 +2,36 @@
   <nav class="navbar">
     <div class="navbar_logo">
       <img src="../assets/logo.png" alt="logo" class="navbar_logo_img" />
-      <span class="navbar_logo_title">BetterTwitch</span>
+      <span class="navbar_logo_title">TwitchSimplified</span>
     </div>
-    <h1 class="navbar_greetings">Cześć, {{ userName }}</h1>
-    <SearchBar></SearchBar>
+    <h1 class="navbar_greetings">Cześć, {{ userStore.userName }}</h1>
+
+    <div class="searchbar">
+      <SearchBar />
+      <div v-if="true" class="searchbar-resoults">
+        <ul>
+          <li>
+            {{ searchStore.searchName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
     <img src="../assets/person.jpg" alt="user avatar" class="user_avatar" />
   </nav>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
 import SearchBar from "./SearchBar.vue";
+import { useSearchStore } from '@/store/SearchStore'
+import { useUserStore } from "@/store/UserStore";
+const userStore = useUserStore()
+const searchStore = useSearchStore()
+const userName = "Kamil";
 
-export default defineComponent({
-  name: "NavbarMain",
-  props: {
-    userName: {
-      type: String,
-      default: "Guest",
-    },
-  },
-  components: {
-    SearchBar,
-  },
-});
+
 </script>
 
 <style lang="scss">
