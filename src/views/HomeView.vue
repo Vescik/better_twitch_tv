@@ -1,31 +1,40 @@
 <template>
   <div class="hero_container">
-    <CategoryFilter/>
-   <ContentContainer/>
-   
+    <CategoryFilter />
+    <ContentContainer />
+
   </div>
 </template>
 
 <script lang="ts" setup >
-import { onBeforeMount,ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import CategoryFilter from "../components/CategoryFilter.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
-import {useLanguagesStore} from '@/store/LanguageStore'
+import { useLanguagesStore } from '@/store/LanguageStore'
 import fetchChannels from '@/composable/getChannels'
 import { useCategories } from "@/store/CategoryStore";
+import { useAccesTokenStore } from "@/store/AccesTokenStore";
+import validateToken from "@/composable/getValid";
 
 
 
 
-  
-    const langStore = useLanguagesStore()
-    const categoryStore = useCategories()
 
-    const {getChannelsData} = fetchChannels() 
-    onBeforeMount(()=> {getChannelsData(langStore.selectedLang)
+const langStore = useLanguagesStore()
+const categoryStore = useCategories()
+const accesTokenStore = useAccesTokenStore()
 
-  console.log(categoryStore.categoryList);
-    })
+const { getChannelsData } = fetchChannels()
+onBeforeMount(async () => {
+  if (!document.cookie.length) {
+    accesTokenStore.setAccesToken()
+  } else {
+    validateToken(document.cookie)
+  }
+
+  getChannelsData(langStore.selectedLang)
+
+})
 
 </script>
 <style  lang="scss">
