@@ -12,7 +12,7 @@ const fetchCategories =  () => {
     const getCategoriesData = async () => {
         try{
             const token = await auth();
-            const data = await fetchTwitchData(token, url);
+            const data = await fetchTwitchData(url);
             categoryStore.categoryList = data;
             console.log(data);
              

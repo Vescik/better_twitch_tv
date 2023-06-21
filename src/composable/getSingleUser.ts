@@ -9,10 +9,11 @@ const fetchUser = () => {
   const user = ref([]);
 
   const getUserData = async (userID:string) => {
-    const USER_URL = `https://api.twitch.tv/helix/users?id=${userID}` ;
+    const USER_ID_URL = `https://api.twitch.tv/helix/users?id=${userID}` ;
+    const USER_NAME_URL = `https://api.twitch.tv/helix/users?id=${userID}` ;
     try{
       const token = await auth();
-      const data = await fetchTwitchData(token, USER_URL);
+      const data = await fetchTwitchData(USER_ID_URL);
       user.value = data
     }catch(err){
       console.log(err);

@@ -34,7 +34,7 @@ const fetchChannels = () => {
 
     try{
       const token = await auth();
-      const data = await fetchTwitchData(token, USER_URL);
+      const data = await fetchTwitchData(USER_URL);
       channelStore.channelList = data
       console.log(data);
     }catch(err){
