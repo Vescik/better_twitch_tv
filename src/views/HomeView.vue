@@ -34,8 +34,7 @@ onBeforeMount(async () => {
   const getUrl = accesTokenStore.checkUrl()
   const isTokenSet = accesTokenStore.isTokenSet()
 
-  if(getUrl){
-    accesTokenStore.setAccesToken()
+
     if(isTokenSet){
       const isTokenValid = await accesTokenStore.isTokenExp()
       if(isTokenValid){
@@ -49,8 +48,9 @@ onBeforeMount(async () => {
       }else{
         router.push('/')
       }
+    }else{
+      router.push('/login')
     }
-  }
     
   
 

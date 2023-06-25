@@ -38,18 +38,29 @@ const router = useRouter()
 onBeforeMount(async () => {
   const isTokenValid = await accesTokenStore.isTokenExp()
   const isTokenSet = accesTokenStore.isTokenSet()
+  const getUrl = accesTokenStore.checkUrl()
 
-  if(isTokenSet && isTokenValid){
-    const ID = ref(userStore.user.id)
-    console.log(ID.value);
-    
-    const userData = await getUserData(Number(ID.value))
+if(getUrl){
+  accesTokenStore.setAccesToken()
+  if(isTokenSet){
+    const isTokenValid = await accesTokenStore.isTokenExp()
+    if(isTokenValid){
+      console.log('token is valid')
+      const ID = ref(userStore.user.id)
+      const userData = await getUserData(Number(ID.value))
     userData.map((user:any) => {
       userStore.setUser(user)
     })
+      router.push('/')
+    }else{
+      router.push('/')
+    }
+  }else if(isTokenValid){
     router.push('/')
+  }else{
+    router.push('/login')
   }
-  
+}
 
 
 })
