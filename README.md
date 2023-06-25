@@ -29,9 +29,10 @@ TwitchSimplified aims to provide a streamlined Twitch experience by focusing on 
   :compass: Roadmap
 
 * [x] UI for desktop with core functionalities
-* [*] CURRENT STAGE - Embeding twitch player with chat in modal component to allow user watch stream
-* [ ] Login with Twitch authorization
-* [ ] Followed channels section
+* [x]  Embeding twitch player with chat in modal component to allow user watch stream
+* [x] Login with Twitch authorization
+* [*] CURRENT STAGE -Followed channels section
+* [ ] Watch together functionality to allow user watch multiple streams in same time
 * [ ] Section where user can "pin" favorite channels
 
 </div>
