@@ -36,7 +36,6 @@ onBeforeMount(async () => {
 
   if(getUrl){
     accesTokenStore.setAccesToken()
-    console.log('first');
     if(isTokenSet){
       const isTokenValid = await accesTokenStore.isTokenExp()
       if(isTokenValid){
@@ -47,41 +46,13 @@ onBeforeMount(async () => {
         userStore.setUser(user)
       })
         router.push('/home')
+      }else{
+        router.push('/')
       }
-      else{
-        console.log('token is not valid')
-        router.push('/login')
-      }
-      console.log('token is valid')
-      router.push('/home')
     }
-    else{
-      console.log('token is not valid')
-      router.push('/login')
-    }
-    router.push('/home')
-  }else if(isTokenSet){
-    const isTokenValid = await accesTokenStore.isTokenExp()
-    if(isTokenValid){
-      console.log('token is valid')
-      const ID = ref(userStore.user.id)
-      const userData = await getUserData(Number(ID.value))
-    userData.map((user:any) => {
-      userStore.setUser(user)
-    })
-      router.push('/home')
-    }
-    else{
-      console.log('token is not valid')
-      router.push('/login')
-    }
-    console.log('token is valid')
-    router.push('/home')
   }
-  else{
-    console.log('token is not valid')
-    router.push('/login')
-  }
+    
+  
 
   getChannelsData(langStore.selectedLang)
 
