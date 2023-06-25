@@ -50,7 +50,7 @@ onBeforeMount(async () => {
     
     router.push('/home')
   }
-  else{
+  else if(!isTokenValid){
     console.log('token is not valid')
     router.push('/login')
   }
