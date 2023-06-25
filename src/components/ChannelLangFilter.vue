@@ -1,6 +1,5 @@
 <template lang="html">
     <select name="languages" v-model="langStore.selectedLang" >
-
         <option v-for="lang in langStore.langs" 
             :key="lang.code" 
             :value="lang.code">
@@ -14,10 +13,12 @@
     import {watch} from 'vue'
 
     const langStore = useLanguagesStore();
+    const channelsStore = useChannels();
 
     watch(() => ({ selectedLang: langStore.selectedLang }), (newLang, oldLang) => {
-            if (newLang.selectedLang !== oldLang.selectedLang) {                
-                useChannels().getChannelsData(newLang.selectedLang);
+            if (newLang.selectedLang !== oldLang.selectedLang) {   
+                console.log('test');
+                channelsStore.getChannelsData("byLang");
   }
 });
     

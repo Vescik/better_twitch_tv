@@ -10,6 +10,7 @@
         <div class="content_container">
             <div>
                 <ChannelList />
+                <RouterView />
             </div>
         </div>
     </div>
@@ -34,6 +35,7 @@ const categFilterStore = useCategFilter()
     background-color: red;
     padding: 20px;
     border-radius: 20px;
+    width: 100%;
     background-color: $color-dark-primary;
 
     &_heading {

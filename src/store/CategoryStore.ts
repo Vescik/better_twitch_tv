@@ -22,7 +22,8 @@ interface TwitchStream {
 
 export const useCategories = defineStore("useCategoryStore",()=>{
    const categoryList = ref([])
+   const gameID = ref('')
    
  
-   return{categoryList}
+   return{categoryList,gameID}
 })

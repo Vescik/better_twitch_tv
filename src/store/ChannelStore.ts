@@ -4,8 +4,8 @@ import { ref } from 'vue';
 //import { ref,computed } from 'vue'
 
 interface TwitchStream {
-   id: string;
-   user_id: string;
+   id: number;
+   user_id: number;
    user_login: string;
    user_name: string;
    game_id: string;
@@ -22,10 +22,10 @@ interface TwitchStream {
  }
 
 export const useChannels = defineStore("useChannelStore",()=>{
-   const {channels,getChannelsData} = getChannels();
+   const {getChannelsData} = getChannels();
    const channelList = ref<TwitchStream[]>([])
 
   
 
-   return{channels,getChannelsData,channelList}
+   return{getChannelsData,channelList}
 })

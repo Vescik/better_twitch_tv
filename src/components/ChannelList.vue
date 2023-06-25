@@ -2,10 +2,12 @@
     <div  v-if="categFilterStore.filterState === 'channels'" class="streams">
         <div 
         v-for="channel in channelStore.channelList" 
-        :key="channel.user_id" >
+        :key="channel.user_id" 
+        class="streams_single"
+        >
             <SingleChannel
-                :userID="channel.user_id"
-                :userAvatar="getAvatar(channel.user_id)"
+                :userID="Number(channel.user_id)"
+                :userAvatar="getAvatar(Number(channel.user_id))"
                 :thumbnailURL="formatThumbnail(channel)"
                 :channelName="channel.user_name"
                 :channelTitleShorted="formatTtile(channel)"
@@ -19,6 +21,7 @@
         <SingleCategory
         v-for="categ in categoryStore.categoryList"
         :key="categ.id"
+        :gameId="categ.id"
         :categoryName="categ.name"
         :categoryImg="categ.box_art_url"
         />
@@ -42,7 +45,7 @@
     const channelStore = useChannels()
 
     const getAvatar = computed(()=>{
-        return async (userID:string)=>{
+        return async (userID:number)=>{
             let user:{profile_image_url:string}[] = await getUserData(userID)            
             return user[0].profile_image_url
             
@@ -58,6 +61,7 @@
            return channel.title.slice(0, 25) + "...";
       };
     });
+    
 
 
 
@@ -66,5 +70,16 @@
     .streams{
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
+        &_single{
+            margin: 5px;
+            width: clamp(290px, 15%, 400px);
+        }
+
+       
     }
+ 
+
+    
+
 </style>

@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useUserStore } from "@/store/UserStore";
+import { useAccesTokenStore } from "@/store/AccesTokenStore";
 
 
 const validateToken = async (token: string) => {
     const userStore = useUserStore();
+    const accesTokenStore = useAccesTokenStore();
+
     const config = {
         url: "https://id.twitch.tv/oauth2/validate",
         method: 'GET',
@@ -13,8 +16,9 @@ const validateToken = async (token: string) => {
     }
     return axios.get(config.url, config)
         .then((res) => {
-            userStore.setUserName(res.data.login);
-            console.log(res.data);
+            
+            userStore.setUserData(res.data.user_id);
+
             return res.data;
 
         })

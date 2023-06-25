@@ -1,13 +1,10 @@
 @import "../abstract/variables";
 .channel{
     &_container{
-        margin-top: 50px;
-        width: 350px;
-        margin: 10px;
-        height: 300px;
         border-radius: 10px; 
         display: flex;
         flex-direction: column; 
+      
     }
 
     &_avatar{

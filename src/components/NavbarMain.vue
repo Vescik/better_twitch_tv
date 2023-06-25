@@ -4,7 +4,7 @@
       <img src="../assets/logo.png" alt="logo" class="navbar_logo_img" />
       <span class="navbar_logo_title">TwitchSimplified</span>
     </div>
-    <h1 class="navbar_greetings">Cześć, {{ userStore.userName }}</h1>
+    <h1 class="navbar_greetings">Cześć, {{ userStore.user.display_name }}</h1>
 
     <div class="searchbar">
       <SearchBar />
@@ -18,8 +18,7 @@
     </div>
 
 
-
-    <img src="../assets/person.jpg" alt="user avatar" class="user_avatar" />
+    <img :src="userStore.user.profile_image_url" alt="user avatar" class="user_avatar" />
   </nav>
 </template>
 
@@ -27,9 +26,12 @@
 import SearchBar from "./SearchBar.vue";
 import { useSearchStore } from '@/store/SearchStore'
 import { useUserStore } from "@/store/UserStore";
-const userStore = useUserStore()
-const searchStore = useSearchStore()
-const userName = "Kamil";
+
+
+  const userStore = useUserStore()
+  const searchStore = useSearchStore()
+
+
 
 
 </script>

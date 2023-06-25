@@ -2,7 +2,8 @@
     <div 
     
     class="category_box">
-        <img
+        <img 
+        @click="setGameId"
         :src="formatAvatar" alt="catrgory img" class="category_img">
         <p class="category_title">{{ props.categoryName }}</p>
         <span class="category_tags"></span>
@@ -11,14 +12,23 @@
 <script setup lang="ts">
 import { ref,defineProps,computed,onBeforeMount } from "vue";
 import { useCategories } from "@/store/CategoryStore";
+import { useCategFilter } from "@/store/CategFilterStore";
+import { useChannels } from "@/store/ChannelStore";
 
 const categoryStore = useCategories()
+const categFilterStore = useCategFilter()
+const channelStore = useChannels()
+
 const props = defineProps({
     categoryName: {
         type: String,
         required: true
     },
     categoryImg: {
+        type: String,
+        required: true
+    },
+    gameId: {
         type: String,
         required: true
     }
@@ -37,6 +47,13 @@ onBeforeMount(async () => {
 const formatAvatar = computed(() => {
     return userAvatar.value?.replace("{width}x{height}", "150x200");
   });
+const setGameId = () => {
+  const gameId = props.gameId
+  categoryStore.gameID = gameId
+  channelStore.getChannelsData('byGame')
+  categFilterStore.filterState = 'channels'
+}
+
 
 
 </script>

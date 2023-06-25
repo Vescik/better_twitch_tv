@@ -1,7 +1,8 @@
 import { ref } from 'vue';
-import getAuth from './getAuth';
 import getTwitchData from './getTwitchData';
 import { useChannels } from '@/store/ChannelStore';
+import { useLanguagesStore } from '@/store/LanguageStore';
+import { useCategories} from '@/store/CategoryStore';
 
 interface TwitchStream {
   id: string;
@@ -22,19 +23,50 @@ interface TwitchStream {
 }
 
 const fetchChannels = () => {
-  const { auth } = getAuth();
   const { fetchTwitchData } = getTwitchData();
   const channels = ref<TwitchStream[]>([]);
   const channelStore = useChannels();
+  const langStore = useLanguagesStore();
+  const categoryStore = useCategories();
 
+  const handleUrl = {
+    byLang: {
+      lang: langStore.selectedLang,
+      url: `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=25`,
+    },
+    byGame: {
+      game: categoryStore.gameID,
+      url: `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=25`,
+    },
+    byDefault: {
+      url: `https://api.twitch.tv/helix/streams?first=25`,
+    },
+  };
+  const handleChoice = (choice: string) => {
+    if (choice === 'byLang') {
+      if(langStore.selectedLang === 'all') {
+        return `https://api.twitch.tv/helix/streams?first=25`
+      }else{
+        return `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=25`
+      } 
+  } else if (choice === 'byGame') {
+      if(langStore.selectedLang === 'all') {
+        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=25`
+      }else{
+        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&language=${langStore.selectedLang}&first=25`
+      }
+  } else {
+      return `https://api.twitch.tv/helix/streams?first=25&language=${langStore.selectedLang}`
+  }
+  }
 
-  const getChannelsData = async (SELECTED_LANG:string) => {
+  const getChannelsData = async (METHOD:string) => {
     
-    const USER_URL = `https://api.twitch.tv/helix/streams?language=${SELECTED_LANG}`;
+   // const USER_URL = `https://api.twitch.tv/helix/streams?language=${SELECTED_LANG}&first=20`;
+    const URL = handleChoice(METHOD);
 
     try{
-      const token = await auth();
-      const data = await fetchTwitchData(USER_URL);
+      const data = await fetchTwitchData(URL);
       channelStore.channelList = data
       console.log(data);
     }catch(err){

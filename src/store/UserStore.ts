@@ -1,15 +1,26 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+interface User {
+    display_name: string;
+    avatar: string;
+    id: number | string;
+    following: Array<any>;
+}
 export const useUserStore = defineStore("useUserStore", () => {
-    const userName = ref("");
-    const userImage = ref("");
+    const user = ref<User>({
+        display_name: "Guest",
+        avatar: "",
+        id: 0,
+        following: []
+    })
+ 
 
-    const setUserName = (name: string) => {
-        userName.value = name;
+   const setUserData = (id:number|string) => {
+        user.value.id = id;
     }
-    const setUserImage = (image: string) => {
-        userImage.value = image;
+    const setUser = (data:User) => {
+        user.value = data
     }
-    return { userName, userImage, setUserName, setUserImage }
+    return { user, setUserData,setUser }
 })
