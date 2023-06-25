@@ -47,13 +47,9 @@ onBeforeMount(async () => {
     userData.map((user:any) => {
       userStore.setUser(user)
     })
-    
-    router.push('/home')
+    router.push('/')
   }
-  else if(!isTokenValid){
-    console.log('token is not valid')
-    router.push('/login')
-  }
+  
 
 
 })
