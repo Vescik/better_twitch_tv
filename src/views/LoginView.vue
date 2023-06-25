@@ -10,27 +10,32 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, onUnmounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import validateToken from "@/composable/getValid";
+
+import { useAccesTokenStore } from '@/store/AccesTokenStore';
+import fetchUser from "@/composable/getSingleUser";
+import { useUserStore } from "@/store/UserStore";
 
 const client_id:string = process.env.VUE_APP_CLIENT_ID
 const redirect_uri = "http://localhost:8080/home"
-const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls&state=c3ab8aa609ea11e793ae92361f002671`
+const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls+user%3Aread%3Afollows&state=c3ab8aa609ea11e793ae92361f002671`;
 
 const router = useRouter()
+const accesTokenStore = useAccesTokenStore()
+
+const { getUserData } = fetchUser();
+const userStore = useUserStore()
+
 onBeforeMount(async () => {
-    if(document.cookie.length){
-        try{
-            const res = await validateToken(document.cookie);
-            if(res.expires_in > 0){
-                router.push('/home')
-            }
-        }catch(err){
-            console.log(err)
-        }
+    const isTokenValid = await accesTokenStore.isTokenExp()
+    
+    if(isTokenValid){
+        console.log('token is valid')
+        router.push('/home')
     }
 })
+
 </script>
 <style scoped>
 

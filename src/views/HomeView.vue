@@ -15,21 +15,72 @@ import fetchChannels from '@/composable/getChannels'
 import { useCategories } from "@/store/CategoryStore";
 import { useAccesTokenStore } from "@/store/AccesTokenStore";
 import validateToken from "@/composable/getValid";
+import fetchUser from '@/composable/getSingleUser'
+import { useUserStore } from "@/store/UserStore";
+import router from "@/router";
+
 
 
 
 
 
 const langStore = useLanguagesStore()
-const categoryStore = useCategories()
 const accesTokenStore = useAccesTokenStore()
+const { getUserData } = fetchUser();
+const userStore = useUserStore()
 
 const { getChannelsData } = fetchChannels()
 onBeforeMount(async () => {
-  if (!document.cookie.length) {
+  const getUrl = accesTokenStore.checkUrl()
+  const isTokenSet = accesTokenStore.isTokenSet()
+
+  if(getUrl){
     accesTokenStore.setAccesToken()
-  } else {
-    validateToken(document.cookie)
+    console.log('first');
+    if(isTokenSet){
+      const isTokenValid = await accesTokenStore.isTokenExp()
+      if(isTokenValid){
+        console.log('token is valid')
+        const ID = ref(userStore.user.id)
+        const userData = await getUserData(Number(ID.value))
+      userData.map((user:any) => {
+        userStore.setUser(user)
+      })
+        router.push('/home')
+      }
+      else{
+        console.log('token is not valid')
+        router.push('/login')
+      }
+      console.log('token is valid')
+      router.push('/home')
+    }
+    else{
+      console.log('token is not valid')
+      router.push('/login')
+    }
+    router.push('/home')
+  }else if(isTokenSet){
+    const isTokenValid = await accesTokenStore.isTokenExp()
+    if(isTokenValid){
+      console.log('token is valid')
+      const ID = ref(userStore.user.id)
+      const userData = await getUserData(Number(ID.value))
+    userData.map((user:any) => {
+      userStore.setUser(user)
+    })
+      router.push('/home')
+    }
+    else{
+      console.log('token is not valid')
+      router.push('/login')
+    }
+    console.log('token is valid')
+    router.push('/home')
+  }
+  else{
+    console.log('token is not valid')
+    router.push('/login')
   }
 
   getChannelsData(langStore.selectedLang)
