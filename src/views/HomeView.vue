@@ -45,7 +45,7 @@ onBeforeMount(async () => {
       userData.map((user:any) => {
         userStore.setUser(user)
       })
-        router.push('/home')
+        router.push('/')
       }else{
         router.push('/')
       }
