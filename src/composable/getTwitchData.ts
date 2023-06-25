@@ -9,7 +9,7 @@ const getTwitchData = () => {
           url: URL,
           method: 'GET',
           headers: {
-            'Client-ID': process.env.VUE_APP_CLIENT_ID,
+            'Client-ID': "bkh1n11ohrua2vuej6snus4q6l6bk1",
             'Authorization': `Bearer ${document.cookie}`,
           }
         };
