@@ -30,11 +30,16 @@ const userStore = useUserStore()
 
 onBeforeMount(async () => {
     const isTokenValid = await accesTokenStore.isTokenExp()
-    
-    if(isTokenValid){
+    const isTokenSet = accesTokenStore.isTokenSet()
+
+    if(isTokenSet){
+        if(isTokenValid){
         console.log('token is valid')
         router.push('/')
     }
+    }
+
+   
 })
 
 </script>
