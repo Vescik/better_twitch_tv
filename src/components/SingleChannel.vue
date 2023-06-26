@@ -1,12 +1,14 @@
 <template lang="html">
-    <div class="channel_container">
+    <div class="channel_container is-loading">
       <img :src="props.thumbnailURL" 
             alt="channel thumbnail" 
             class="channel_thumbnail"
             @click="streamModalStore.openModal(props)">
       <div class="channel_info">
-            <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
+        <div class="test">
+          <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
 
+        </div>
         <div class="channel_details">
           <p :title="channelTitle" class="channel_title">{{ props.channelTitleShorted }}</p>
           <div class="channel_data">

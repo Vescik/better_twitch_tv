@@ -71,8 +71,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        gap: 2rem;
         &_single{
-            margin: 5px;
+            flex-grow: 1;
             width: clamp(290px, 15%, 400px);
         }
 
