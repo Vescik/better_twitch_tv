@@ -4,12 +4,17 @@
     &_box{
        & img{
         border-radius: 10px;
+        height: auto;
+        width: clamp(150px, 40%, 300px);
         cursor: pointer;
        }
-       width: 160px;
        margin: 3px;
        border-radius: 5px;
+       width: 160px;
        padding: 5px;
     }
+    &_title{
+        overflow-wrap: break-word;
+    } 
 
 }

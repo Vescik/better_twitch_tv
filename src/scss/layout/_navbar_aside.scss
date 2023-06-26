@@ -13,3 +13,9 @@
         }
     }
 }
+
+@media (max-width: $small-devices) {
+ .navbar_menu{
+     display: none;
+ } 
+}
