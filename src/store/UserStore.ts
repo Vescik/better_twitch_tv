@@ -9,7 +9,7 @@ interface User {
 }
 export const useUserStore = defineStore("useUserStore", () => {
     const user = ref<User>({
-        display_name: "Guest",
+        display_name: "",
         avatar: "",
         id: 0,
         following: []

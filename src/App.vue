@@ -26,7 +26,7 @@ import { useModalStore } from "./store/StreamModalStore"
 import { useAccesTokenStore } from "./store/AccesTokenStore";
 const streamModalStore = useModalStore()
 
-import { onBeforeMount,onMounted,ref } from "vue";
+import { onBeforeMount} from "vue";
 import { useRouter } from "vue-router";
 
 const { getUserData } = fetchUser();
@@ -40,28 +40,15 @@ onBeforeMount(async () => {
   const isTokenSet = accesTokenStore.isTokenSet()
   const getUrl = accesTokenStore.checkUrl()
 
-if(getUrl){
-  accesTokenStore.setAccesToken()
-  if(isTokenSet){
-    const isTokenValid = await accesTokenStore.isTokenExp()
-    if(isTokenValid){
-      console.log('token is valid')
-      const ID = ref(userStore.user.id)
-      const userData = await getUserData(Number(ID.value))
-    userData.map((user:any) => {
-      userStore.setUser(user)
-    })
-      router.push('/')
-    }else{
-      router.push('/')
-    }
-  }else if(isTokenValid){
+
+
+  if(getUrl){
+    accesTokenStore.setAccesToken()
+    console.log('token is set');
     router.push('/')
-  }else{
+  }else if( !isTokenSet || !isTokenValid){
     router.push('/login')
   }
-}
-
 
 })
 

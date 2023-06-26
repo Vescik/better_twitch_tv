@@ -32,31 +32,31 @@ const fetchChannels = () => {
   const handleUrl = {
     byLang: {
       lang: langStore.selectedLang,
-      url: `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=25`,
+      url: `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=24`,
     },
     byGame: {
       game: categoryStore.gameID,
-      url: `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=25`,
+      url: `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=24`,
     },
     byDefault: {
-      url: `https://api.twitch.tv/helix/streams?first=25`,
+      url: `https://api.twitch.tv/helix/streams?first=24`,
     },
   };
   const handleChoice = (choice: string) => {
     if (choice === 'byLang') {
       if(langStore.selectedLang === 'all') {
-        return `https://api.twitch.tv/helix/streams?first=25`
+        return `https://api.twitch.tv/helix/streams?first=24`
       }else{
-        return `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=25`
+        return `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=24`
       } 
   } else if (choice === 'byGame') {
       if(langStore.selectedLang === 'all') {
-        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=25`
+        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=24`
       }else{
-        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&language=${langStore.selectedLang}&first=25`
+        return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&language=${langStore.selectedLang}&first=24`
       }
   } else {
-      return `https://api.twitch.tv/helix/streams?first=25&language=${langStore.selectedLang}`
+      return `https://api.twitch.tv/helix/streams?first=24&language=${langStore.selectedLang}`
   }
   }
 
