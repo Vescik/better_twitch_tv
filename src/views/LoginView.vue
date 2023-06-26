@@ -18,8 +18,8 @@ import fetchUser from "@/composable/getSingleUser";
 import { useUserStore } from "@/store/UserStore";
 
 const client_id = "bkh1n11ohrua2vuej6snus4q6l6bk1"
-const redirect_uri = "http://localhost:8080/"
-//const redirect_uri = "https://twitchsimplified.netlify.app/"
+//const redirect_uri = "http://localhost:8080/"
+const redirect_uri = "https://twitchsimplified.netlify.app/"
 const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls+user%3Aread%3Afollows&state=c3ab8aa609ea11e793ae92361f002671`;
 
 const router = useRouter()
