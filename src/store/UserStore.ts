@@ -14,7 +14,7 @@ export const useUserStore = defineStore("useUserStore", () => {
         id: 0,
         following: []
     })
-    const userFollowed = ref([])
+    const userFollowed = ref<string>("")
  
 
    const setUserData = (id:number|string) => {
