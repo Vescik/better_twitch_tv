@@ -37,7 +37,8 @@ onMounted(()=> {
         width: "100%",
         height: 600,
         channel: streamModalStore.channelData?.channelName,
-        layout: Twitch.TwitchEmbedLayout.VIDEO_WITH_CHAT
+        layout: Twitch.TwitchEmbedLayout.VIDEO_WITH_CHAT,
+        theme: Twitch.TwitchEmbedTheme.DARK,
       });
 })
 

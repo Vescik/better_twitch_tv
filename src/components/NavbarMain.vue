@@ -6,16 +6,7 @@
     </div>
     <div class="user"  v-if="userStore.user.display_name">
       <h1 class="navbar_greetings">Cześć, {{userStore.user.display_name }}</h1>
-      <div class="searchbar">
-        <SearchBar />
-        <div v-if="true" class="searchbar-resoults">
-          <ul>
-            <li>
-              {{ searchStore.searchName }}
-            </li>
-          </ul>
-        </div>
-      </div>
+   
 
       <img :src="userStore.user.profile_image_url" alt="user avatar" class="user_avatar" />
     </div>
@@ -42,6 +33,7 @@ const searchStore = useSearchStore()
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 20px 0 50px;
 }
 </style>
