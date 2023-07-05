@@ -3,10 +3,10 @@
     <NavbarMain></NavbarMain>
   </header>
   <div class="container">
-    <aside class="aside_menu">
+    <aside v-if="userStore.user.display_name" class="aside_menu">
       <NavbarMenu></NavbarMenu>
     </aside>
-    <main class="main_conteiner">
+    <main class="main_container">
       <RouterView />
     </main>
     <StreamModal v-if="streamModalStore.showModal"></StreamModal>
@@ -32,6 +32,8 @@ import { useRouter } from "vue-router";
 const { getUserData } = fetchUser();
 const userStore = useUserStore()
 const accesTokenStore = useAccesTokenStore()
+
+
 
 const router = useRouter()
 
