@@ -14,6 +14,7 @@ export const useUserStore = defineStore("useUserStore", () => {
         id: 0,
         following: []
     })
+    const userFollowed = ref([])
  
 
    const setUserData = (id:number|string) => {
@@ -22,5 +23,10 @@ export const useUserStore = defineStore("useUserStore", () => {
     const setUser = (data:User) => {
         user.value = data
     }
-    return { user, setUserData,setUser }
+
+    const setFollowData = async (param: string ) => {
+         userFollowed.value = param
+    }  
+
+    return { user, setUserData,setUser,userFollowed,setFollowData }
 })
