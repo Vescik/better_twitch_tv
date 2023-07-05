@@ -31,6 +31,7 @@ const userStore = useUserStore()
 
 const { getChannelsData } = fetchChannels()
 onBeforeMount(async () => {
+  
   const getUrl = accesTokenStore.checkUrl()
   const isTokenSet = accesTokenStore.isTokenSet()
 
