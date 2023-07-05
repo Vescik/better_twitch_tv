@@ -4,7 +4,7 @@
 .navbar{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin: $margin-base-half $margin-base 4rem $margin-base-half;
     &_logo{
         display: flex;
@@ -26,8 +26,8 @@
         display: flex;
         flex-wrap: wrap;
         &_logo{
-            order: 1;
             &_img{
+                order: 1;
                 width: 30px;
                 height: 30px;
                 margin-right: .5em;
@@ -42,7 +42,8 @@
         height: 40px;
     } 
     .searchbar{
-        order: 5;
+        flex-grow: 1;
+        order: 4;
         width: 100%;
         margin-bottom: 1em;}
 }
