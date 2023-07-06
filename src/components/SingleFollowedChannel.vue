@@ -1,14 +1,12 @@
 <template>
- 
-      <img :src="channel.profileImg" alt="">
-      <p>{{ channel.name }}</p>
-  
+    <img :src="channel.profileImg" alt="">
+    <p>{{ channel.name }}</p>
 </template>
 
 <script setup lang="ts">
 import { onBeforeMount, ref } from "vue";
-import { useUserStore,defineProps } from "@/store/UserStore";
-import  fetchUser  from "@/composable/getSingleUser";
+import { defineProps } from "@/store/UserStore";
+import fetchUser from "@/composable/getSingleUser";
 
 const props = defineProps({
     channel: {
@@ -24,29 +22,31 @@ const channel = ref({
 })
 
 onBeforeMount(async () => {
-  const x = await  getUserData(Number(props.channel.to_id))
+    const x = await getUserData(Number(props.channel.to_id))
     channel.value.name = x[0].display_name
     channel.value.profileImg = x[0].profile_image_url
 
     console.log(x[0]);
-    
+
 })
 
 
 </script>
 
 <style scoped lang="scss" >
-.channel{
-    &_container{
+.channel {
+    &_container {
         width: 150px;
         height: 150px;
         margin: 10px;
-        img{
+
+        img {
             width: 100%;
             height: 100%;
             border-radius: 20px;
-         }
-        p{
+        }
+
+        p {
             color: white;
             font-size: 20px;
             font-weight: 700;

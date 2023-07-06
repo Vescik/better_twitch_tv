@@ -6,9 +6,14 @@
         <div class="login_right">
             <div class="login_right_panel" >
         <h1>Zaloguj</h1>
-        <button>
+        <input v-model="accesTokenStore.accesToken" type="text" placeholder="Podaj token użytkownika"> 
+        <button v-if="accesTokenStore.accesToken.length < 0" >
             <a :href="url">
-                Połącz konto z Twitch</a>   
+                Połącz konto z Twitch
+            </a>   
+        </button>
+        <button v-else @click="accesTokenStore.setTokenInput(accesTokenStore.accesToken)" >
+            Zaloguj
         </button>
     </div>
         </div>
@@ -18,7 +23,12 @@
 
 <script setup lang="ts">
 import { onBeforeMount, onUnmounted, onBeforeUnmount,onMounted } from 'vue'
+import { useAccesTokenStore } from '@/store/AccesTokenStore'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
+const accesTokenStore = useAccesTokenStore()
+//
 const moveMouse = (e) => {
     const bg = document.querySelector('.login_left img')
         const x = e.clientX / window.innerWidth
@@ -34,8 +44,8 @@ onUnmounted(() => {
 
 
 const client_id = "bkh1n11ohrua2vuej6snus4q6l6bk1"
-//const redirect_uri = "http://localhost:8080/"
-const redirect_uri = "https://twitchsimplified.netlify.app/"
+const redirect_uri = "http://localhost:8080/"
+//const redirect_uri = "https://twitchsimplified.netlify.app/"
 const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls+user%3Aread%3Afollows&state=c3ab8aa609ea11e793ae92361f002671`;
 
 
@@ -62,7 +72,7 @@ const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id
         h1{
             text-align: center;
             font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         & button{
             background-color: #9147ff;
@@ -106,6 +116,14 @@ const url = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id
 
         background-color: #262629;
         border-radius: 20px;
+
+
+        input{
+            border: #9147ff 2px solid;
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+        }
         
     }
     }

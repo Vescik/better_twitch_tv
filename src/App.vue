@@ -43,8 +43,12 @@ onBeforeMount(async () => {
   const getUrl = accesTokenStore.checkUrl()
 
 
-
-  if(getUrl){
+  if(accesTokenStore.tokenInput.length > 0){
+    accesTokenStore.setAccesToken()
+    console.log('token is set');
+    router.push('/')
+  }
+  else if(getUrl){
     accesTokenStore.setAccesToken()
     console.log('token is set');
     router.push('/')

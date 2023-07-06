@@ -16,9 +16,7 @@ const validateToken = async (token: string) => {
     }
     return axios.get(config.url, config)
         .then((res) => {
-            
             userStore.setUserData(res.data.user_id);
-
             return res.data;
 
         })

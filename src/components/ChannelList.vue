@@ -76,11 +76,6 @@
             flex-grow: 1;
             width: clamp(290px, 15%, 400px);
         }
-
-       
     }
  
-
-    
-
 </style>
