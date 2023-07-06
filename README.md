@@ -14,7 +14,7 @@ Maybe you can mention me or this repo in the acknowledgements too
   ## :hamburger: About the Project
   - **Browsing Channels and Categories:** Service allows user browse and filter by langauge live channels and categories with live data.
 
-- **Stream Watching (Under Development):** Currently working on implementing a functionality that will enable users to watch live streams directly within the app. Stay tuned for an immersive streaming experience without having to leave TwitchSimplified.
+- **Stream Watching: You are allow to watch stream in simply pop'up, switch beetwen channels never was that simply! (MultiStream fucntion is currently under the development)
 
 ## Future Enhancements
 
@@ -31,8 +31,8 @@ TwitchSimplified aims to provide a streamlined Twitch experience by focusing on 
 * [x] UI for desktop with core functionalities
 * [x]  Embeding twitch player with chat in modal component to allow user watch stream
 * [x] Login with Twitch authorization
-* [*] CURRENT STAGE -Followed channels section
-* [ ] Watch together functionality to allow user watch multiple streams in same time
+* [x] Followed channels section
+* [ * ] UNDER THE DEVELOPMENT Watch together functionality to allow user watch multiple streams in same time
 * [ ] Section where user can "pin" favorite channels
 
 </div>
