@@ -1,12 +1,20 @@
 <template>
-    <img :src="channel.profileImg" alt="">
-    <p>{{ channel.name }}</p>
+
+        <transition name="fade">
+            <div v-if="channel.profileImg">
+                <img :src="channel.profileImg" alt="">
+            <p>{{ channel.name }}</p>
+            </div>
+
+        </transition>
+
 </template>
 
 <script setup lang="ts">
 import { onBeforeMount, ref } from "vue";
 import { defineProps } from "@/store/UserStore";
 import fetchUser from "@/composable/getSingleUser";
+
 
 const props = defineProps({
     channel: {
@@ -25,15 +33,19 @@ onBeforeMount(async () => {
     const x = await getUserData(Number(props.channel.to_id))
     channel.value.name = x[0].display_name
     channel.value.profileImg = x[0].profile_image_url
-
-    console.log(x[0]);
-
 })
 
 
 </script>
 
 <style scoped lang="scss" >
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .1s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 1;
+}
 .channel {
     &_container {
         width: 150px;

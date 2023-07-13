@@ -6,13 +6,13 @@
         <div class="login_right">
             <div class="login_right_panel" >
         <h1>Zaloguj</h1>
-        <input v-model="accesTokenStore.accesToken" type="text" placeholder="Podaj token użytkownika"> 
-        <button v-if="accesTokenStore.accesToken.length < 0" >
+        <!-- <input v-model="accesTokenStore.accesToken" type="text" placeholder="Podaj token użytkownika">  -->
+        <!-- <button >
             <a :href="url">
                 Połącz konto z Twitch
             </a>   
-        </button>
-        <button v-else @click="accesTokenStore.setTokenInput(accesTokenStore.accesToken)" >
+        </button> -->
+        <button @click="router.push('/')" >
             Zaloguj
         </button>
     </div>
@@ -35,6 +35,8 @@ const moveMouse = (e) => {
         const y = e.clientY / window.innerHeight
         bg.style.transform = `translate(-${x * 20}px, -${y * 20}px)`
     } 
+
+   
 onMounted(() => {
     window.addEventListener('mousemove', moveMouse)
 })

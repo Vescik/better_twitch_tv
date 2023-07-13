@@ -18,12 +18,17 @@
         <span class="menu_title">Ustawienia</span>
       </router-link>
     </li>
+      <AppAlert  />
   </ul>
+ 
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "NavbarMenu",
+<script setup lang="ts">
+import { defineComponent, ref } from "vue";
+import AppAlert from "./AppAlert.vue";
+const alert = ref({
+  type: "error",
+  message: "test",
+  show: true,
 });
 </script>
 <style lang="scss">

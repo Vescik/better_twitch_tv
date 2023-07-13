@@ -1,16 +1,12 @@
 <template lang="html">
-    <div 
-    
-    class="category_box">
-        <img 
-        @click="setGameId"
-        :src="formatAvatar" alt="catrgory img" class="category_img">
-        <p class="category_title">{{ props.categoryName }}</p>
-        <span class="category_tags"></span>
-    </div>
+  <div class="category_box">
+    <img @click="setGameId" :src="formatAvatar" alt="catrgory img" class="category_img">
+    <p class="category_title">{{ props.categoryName }}</p>
+    <span class="category_tags"></span>
+  </div>
 </template>
 <script setup lang="ts">
-import { ref,defineProps,computed,onBeforeMount } from "vue";
+import { ref, defineProps, computed, onBeforeMount } from "vue";
 import { useCategories } from "@/store/CategoryStore";
 import { useCategFilter } from "@/store/CategFilterStore";
 import { useChannels } from "@/store/ChannelStore";
@@ -20,21 +16,21 @@ const categFilterStore = useCategFilter()
 const channelStore = useChannels()
 
 const props = defineProps({
-    categoryName: {
-        type: String,
-        required: true
-    },
-    categoryImg: {
-        type: String,
-        required: true
-    },
-    gameId: {
-        type: String,
-        required: true
-    }
+  categoryName: {
+    type: String,
+    required: true
+  },
+  categoryImg: {
+    type: String,
+    required: true
+  },
+  gameId: {
+    type: String,
+    required: true
+  }
 })
 const userAvatar = ref<string | null>(
-null); // Use a ref to hold the userAvatar value
+  null); // Use a ref to hold the userAvatar value
 
 onBeforeMount(async () => {
   try {
@@ -45,8 +41,8 @@ onBeforeMount(async () => {
   }
 });
 const formatAvatar = computed(() => {
-    return userAvatar.value?.replace("{width}x{height}", "150x200");
-  });
+  return userAvatar.value?.replace("{width}x{height}", "150x200");
+});
 const setGameId = () => {
   const gameId = props.gameId
   categoryStore.gameID = gameId
@@ -59,5 +55,4 @@ const setGameId = () => {
 </script>
 <style lang="scss">
 @import "../scss/components/single-category";
-
 </style>

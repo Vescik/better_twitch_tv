@@ -1,28 +1,35 @@
-
 <template>
-  <div class="stream-modal_box">
-    <div id="twitch-player">
-      <div class="stream-modal_details">
-        <img :src="userAvatar" alt="">
-        <div>
-          <p>{{ streamModalStore.channelData?.channelTitle }}</p>
-          <p>{{ streamModalStore.channelData?.channelName }}</p>
-          <span>{{ streamModalStore.channelData?.channelViewers }}</span>
+  <Transition name="fade">
+    <div v-if="streamModalStore.showModal" class="modal-wrapper">
+      <div class="stream-modal_box">
+        <div id="twitch-player">
+          <div class="stream-modal_details">
+            <img :src="userAvatar" alt="">
+            <div>
+              <p>{{ streamModalStore.channelData?.channelTitle }}</p>
+              <p>{{ streamModalStore.channelData?.channelName }}</p>
+              <span>{{ streamModalStore.channelData?.channelViewers }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div @click="streamModalStore.closeModal" class="backdrop"></div>
+  </Transition>
+  <transition name="fade">
+    <div v-if="streamModalStore.showModal" @click="streamModalStore.closeModal" class="backdrop"></div>
+
+  </transition>
 </template>
 
 <script setup lang="ts">
 import { useModalStore } from "@/store/StreamModalStore";
 import * as Twitch from 'twitch-player';
-import { onMounted, ref, onBeforeMount } from 'vue'
+import { onMounted, ref, onBeforeMount, onUnmounted } from 'vue'
 const streamModalStore = useModalStore();
 
 const userAvatar = ref<string | null>(null); // Use a ref to hold the userAvatar value
 onBeforeMount(async () => {
+  
   try {
     const avatar = await streamModalStore.channelData?.userAvatar; // Await the userAvatar promise
     userAvatar.value = avatar; // Assign the resolved value to the ref
@@ -31,6 +38,8 @@ onBeforeMount(async () => {
   }
 });
 onMounted(() => {
+  console.log('mounted');
+  
   const embed = new Twitch.TwitchEmbed('twitch-player', {
     width: "100%",
     height: 600,
@@ -39,12 +48,16 @@ onMounted(() => {
     theme: Twitch.TwitchEmbedTheme.DARK,
   });
 })
-
+onUnmounted(() => {
+  console.log('unmounted');
+})
 </script>
 
 <style scoped lang="scss">
 @import "../scss/components/stream_modal";
 @import "../scss/components/channel_thumbnail";
+
+
 
 #twitch-player {
 
@@ -61,4 +74,5 @@ img {
   margin-right: 20px;
 
 }
+
 </style>
