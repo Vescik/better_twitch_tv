@@ -24,8 +24,14 @@ interface TwitchStream {
 export const useChannels = defineStore("useChannelStore",()=>{
    const {getChannelsData} = getChannels();
    const channelList = ref<TwitchStream[]>([])
+   const isChannelListEmpty = () => {
+      if (channelList.value.length === 0) {
+         return true
+      }
+      return false
+   }
 
   
 
-   return{getChannelsData,channelList}
+   return{getChannelsData,channelList,isChannelListEmpty}
 })
