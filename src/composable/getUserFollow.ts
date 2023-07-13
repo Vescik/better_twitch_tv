@@ -13,7 +13,6 @@ const fetchFollows = () => {
     try {
       const data = await fetchTwitchData(setURL);
       userFollowed.value = data
-      console.log(userFollowed.value);
 
 
     } catch (err) {
@@ -26,7 +25,6 @@ const fetchFollows = () => {
     const setURL = `https://api.twitch.tv/helix/streams?${param}`
     try {
       const data = await fetchTwitchData(setURL);
-      console.log(data);
       
       userStore.setFollowData(data)
     } catch (err) {

@@ -68,7 +68,6 @@ const fetchChannels = () => {
     try{
       const data = await fetchTwitchData(URL);
       channelStore.channelList = data
-      console.log(data);
     }catch(err){
       console.log(err);
     }
