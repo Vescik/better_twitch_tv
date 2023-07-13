@@ -18,10 +18,12 @@ const watchTogetherStore = useWatchTogetherStore();
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
-    align-items: center; 
+    align-items: center;
     width:90%;
     margin: 10px;
+
+    background-color: rgb(29, 27, 27);
+    border-radius: 10px;
     
     position: absolute;
     top: 50%;
