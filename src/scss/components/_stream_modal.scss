@@ -21,6 +21,8 @@
     height: 80%;
     background-color: $color-dark-primary;
     border-radius: 10px;
+    overflow: hidden;
+    animation: extendModal 0.5s ease-in-out;
     }
     &_details{
         margin-top: 20px;
@@ -29,4 +31,17 @@
     }
 
     
+}
+
+@keyframes extendModal {
+     0% {
+         opacity: 0;
+            transform: translate(-50%,-50%) scale(0.3);
+     }
+     
+            
+        100% {
+            opacity: 1;
+            transform: translate(-50%,-50%) scale(1);
+        }
 }
