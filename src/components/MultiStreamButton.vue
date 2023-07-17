@@ -1,19 +1,27 @@
 <template>
-    <div class="multi_button" @click="watchTogetherStore.toggleMultiModal">
+    <div class="multi_button" @click="handleToggleMultiModal">
     
       <span class="material-symbols-rounded">grid_view</span>
-      <p class="multi_button-text" :class="{ 'multi_button-text--visible': isHovered }">WatchTogether</p>
+      <p class="multi_button-text">WatchTogether</p>
     </div>
   </template>
   
   <script setup lang="ts">
   import { ref } from 'vue';
   import { useWatchTogetherStore } from '@/store/WatchTogetherStore';
+  import { useAlertStore } from '@/store/AlertStore';
   
   const watchTogetherStore = useWatchTogetherStore();
+  const alertStore = useAlertStore();
   const multiList = watchTogetherStore.watchTogetherList;
 
-  
+  const handleToggleMultiModal = () => {
+    if (multiList.length !== 0) {
+      watchTogetherStore.toggleMultiModal();
+    }else{
+      alertStore.showAlert("Dodaj wiecej streamow do WatchTogether!", "error")
+    }
+  };
 
   </script>
   
