@@ -6,15 +6,13 @@
         <div class="login_right">
             <div class="login_right_panel" >
         <h1>Zaloguj</h1>
-        <!-- <input v-model="accesTokenStore.accesToken" type="text" placeholder="Podaj token użytkownika">  -->
-        <!-- <button >
+        <input v-model="accesTokenStore.accesToken" type="text" placeholder="Podaj token użytkownika"> 
+        <button >
             <a :href="url">
                 Połącz konto z Twitch
             </a>   
-        </button> -->
-        <button @click="router.push('/')" >
-            Zaloguj
         </button>
+
     </div>
         </div>
 
@@ -25,7 +23,6 @@
 import { onBeforeMount, onUnmounted, onBeforeUnmount,onMounted } from 'vue'
 import { useAccesTokenStore } from '@/store/AccesTokenStore'
 import { useRouter } from 'vue-router'
-const router = useRouter()
 
 const accesTokenStore = useAccesTokenStore()
 //

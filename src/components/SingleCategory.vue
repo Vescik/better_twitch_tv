@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="category_box">
-    <img @click="setGameId" :src="formatAvatar" alt="catrgory img" class="category_img">
+  <div class="category_box" >
+    <img @click="handleCategoryClick" :src="formatAvatar" alt="catrgory img" class="category_img">
     <p class="category_title">{{ props.categoryName }}</p>
     <span class="category_tags"></span>
   </div>
@@ -10,9 +10,9 @@ import { ref, defineProps, computed, onBeforeMount } from "vue";
 import { useCategories } from "@/store/CategoryStore";
 import { useCategFilter } from "@/store/CategFilterStore";
 import { useChannels } from "@/store/ChannelStore";
+const categFilterStore = useCategFilter()
 
 const categoryStore = useCategories()
-const categFilterStore = useCategFilter()
 const channelStore = useChannels()
 
 const props = defineProps({
@@ -48,6 +48,11 @@ const setGameId = () => {
   categoryStore.gameID = gameId
   channelStore.getChannelsData('byGame')
   categFilterStore.filterState = 'channels'
+}
+const handleCategoryClick = () => {
+  setGameId()
+  const category = props.categoryName
+  categFilterStore.setUsedFilters(category)
 }
 
 

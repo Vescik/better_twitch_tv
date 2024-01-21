@@ -1,9 +1,9 @@
 <template>
 
         <transition name="fade">
-            <div v-if="channel.profileImg">
-                <img :src="channel.profileImg" alt="">
-            <p>{{ channel.name }}</p>
+            <div >
+            <img :src="channel.profileImg" alt="">
+            <p>{{ props.channel.broadcaster_name }}</p>
             </div>
 
         </transition>
@@ -28,12 +28,15 @@ const channel = ref({
     profileImg: '',
 
 })
-
-onBeforeMount(async () => {
-    const x = await getUserData(Number(props.channel.to_id))
-    channel.value.name = x[0].display_name
+onBeforeMount(() =>{
+    console.log(props.channel)
+}) 
+ onBeforeMount(async () => {
+   const x = await getUserData(Number(props.channel.broadcaster_id))
+   console.log(x)
+   channel.value.name = x[0].display_name
     channel.value.profileImg = x[0].profile_image_url
-})
+ })
 
 
 </script>

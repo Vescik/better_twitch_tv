@@ -11,7 +11,7 @@ export const useAccesTokenStore = defineStore("useAccesTokenStore", () => {
     const url = ref(window.location.href)
     const userStore = useUserStore()
     const router = useRouter()
-    const tokenInput = ref("zk3zazy3gv0fj7sqjnbu2p0scav1mf")
+    const tokenInput = ref("")
 
     const setTokenInput = (token:string) => {
         document.cookie = token

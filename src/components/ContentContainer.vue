@@ -1,8 +1,13 @@
 <template lang="html">
     <div class="content">
         <div class="content_heading_box" v-if="categFilterStore.filterState === 'channels'">
-            <h1 class="content_heading">Twórcy na żywo</h1>
-            <ChannelLangFilter />
+            <div class="col">
+                <div class="row">
+                <h1 class="content_heading">Twórcy na żywo</h1>
+                <ChannelLangFilter />
+            </div>
+            <FilterBar/>
+            </div>
         </div>
         <div v-else>
             <h1>Kategorie</h1>
@@ -19,8 +24,7 @@
 import ChannelList from "./ChannelList.vue";
 import ChannelLangFilter from "@/components/ChannelLangFilter.vue";
 import { useCategFilter } from '@/store/CategFilterStore';
-
-
+import FilterBar from "./FilterBar.vue";
 const categFilterStore = useCategFilter()
 
 
@@ -41,7 +45,17 @@ const categFilterStore = useCategFilter()
     &_heading {
         &_box {
             display: flex;
+            margin-bottom: 15px;
         }
     }
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.col{
+    display: flex;
+    flex-direction: column;
 }
 </style>

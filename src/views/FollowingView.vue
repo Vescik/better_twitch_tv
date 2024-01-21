@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+ 
     <div class="followed_container" v-if="userStore.userFollowed.length">
       <div class="followed_channel" v-for="channel in userStore.userFollowed" :key="channel.to_id">
         <SingleFollowedChannel :channel="channel" />
@@ -7,32 +7,23 @@
 
     </div>
 
-  </transition>
 </template>
 <script setup lang="ts">
-import fetchFollow from '@/composable/getUserFollow'
 import SingleFollowedChannel from '@/components/SingleFollowedChannel.vue';
-import fetchUser from '@/composable/getSingleUser'
 import { useUserStore } from '@/store/UserStore'
-import { onBeforeMount, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import fetchFollows from '@/composable/getUserFollow'
 
-const { getUserData } = fetchUser()
 const userStore = useUserStore()
-const url = ref(``)
-const setUrl = (ID: string) => {
-  url.value = `https://api.twitch.tv/helix/users?id=${ID}`
-  url.value += `&user_id=${ID}`
-}
-onBeforeMount(async () => {
-  console.log(typeof document.cookie);
-  const { getFollowData, getFollowedChannels } = fetchFollow();
+const { getFollowedChannels } = fetchFollows()
 
-  const user = await getFollowData(userStore.user.id)
-  userStore.setFollowData(user)
-
+onMounted(async () => {
+console.log("followed")
+getFollowedChannels()
 
 
 })
+
 </script>
 <style lang="scss">
 .followed {

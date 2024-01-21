@@ -1,38 +1,29 @@
 import { ref } from 'vue';
 import getTwitchData from './getTwitchData';
 import { useUserStore } from '../store/UserStore'
+import { useAccesTokenStore } from '../store/AccesTokenStore'
+
+
 
 const fetchFollows = () => {
   const { fetchTwitchData } = getTwitchData();
   const userStore = useUserStore()
-  const userFollowed = ref([])
+  const userID = useUserStore().user.id
 
-  const getFollowData = async (param: string | number) => {
-    const setURL = `https://api.twitch.tv/helix/users/follows?from_id=${param}&first=50`
-
+  
+  const getFollowedChannels = async () => {
+    const url = `https://api.twitch.tv/helix/channels/followed?user_id=${userID}&first=100`
     try {
-      const data = await fetchTwitchData(setURL);
-      userFollowed.value = data
-
-
-    } catch (err) {
-      console.log(err);
-    }
-    return userFollowed.value
-  };
-
-  const getFollowedChannels = async (param:any) => {
-    const setURL = `https://api.twitch.tv/helix/streams?${param}`
-    try {
-      const data = await fetchTwitchData(setURL);
-      
+      const data = await fetchTwitchData(url);
+      console.log(data);
       userStore.setFollowData(data)
+
     } catch (err) {
       console.log(err);
     }
   }
 
-  return { getFollowData, getFollowedChannels };
+  return { getFollowedChannels };
 };
 
 export default fetchFollows;
