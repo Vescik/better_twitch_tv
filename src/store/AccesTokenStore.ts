@@ -28,21 +28,15 @@ export const useAccesTokenStore = defineStore("useAccesTokenStore", () => {
     }
 
     const setAccesToken = () => {
-        if(tokenInput.value.length > 0){
-            document.cookie = tokenInput.value
-            accesToken.value = tokenInput.value
-        }else if(checkUrl()){
+        if(checkUrl()){
+            console.log(url)
             const getToken = url.value.split("=")[1].split("&")[0]
             document.cookie = getToken
             accesToken.value = getToken
-            console.log("token is set");
             return true
         }else{
-            console.log("token is not set");
             return false
         }
-
-
     }
     const getAccesToken = () => {
         const token = accesToken.value
@@ -62,17 +56,14 @@ export const useAccesTokenStore = defineStore("useAccesTokenStore", () => {
     const isTokenExp = async () => {
         const token = getAccesToken()        
         const data = await validateToken(token)
-        
            if(data){
             if (data.expires_in > 0) {
                 userStore.setUserData(data.user_id);
                 return true
             } else {
-                console.log("token is not valid");
                 return false
             }
            }
-        
     }
         return { accesToken, setAccesToken,isTokenExp,isTokenSet,checkUrl,tokenInput,setTokenInput }
     })

@@ -11,11 +11,7 @@
 
 <script lang="ts" setup>
 import { useAlertStore } from '@/store/AlertStore';
-
 const alertStore = useAlertStore();
-
-
-
 </script>
 
 <style lang="scss" scoped>

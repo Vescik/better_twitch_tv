@@ -9,16 +9,8 @@
                         :channelTitleShorted="formatTtile(channel)" :channelTitle="channel.title"
                         :channelCategory="channel.game_name" :channelViewers="channel.viewer_count" />
                 </div>
-                
-
             </div>
         </div>
-        <div  v-else-if="channelStore.channelList.length < 1">
-                    <SkeletonComponent class="streams"/>
-                    fffffffff
-        </div>
-
-
         <div class="streams" v-else-if="categFilterStore.filterState === 'categories'">
             <SingleCategory v-for="categ in categoryStore.categoryList" :key="categ.id" :gameId="categ.id"
                 :categoryName="categ.name" :categoryImg="categ.box_art_url" />

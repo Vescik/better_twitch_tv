@@ -16,12 +16,9 @@ const channelsStore = useChannels();
 watch(() => ({ selectedLang: langStore.selectedLang }), (newLang, oldLang) => {
     if (newLang.selectedLang !== oldLang.selectedLang) {
         channelsStore.channelList = [];
-        console.log(channelsStore.channelList.length);
-        
         channelsStore.getChannelsData("byLang");
     }
 });
-
 
 </script>
 <style lang="scss">

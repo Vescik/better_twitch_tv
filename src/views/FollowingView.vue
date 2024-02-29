@@ -1,12 +1,10 @@
 <template>
- 
-    <div class="followed_container" v-if="userStore.userFollowed.length">
-      <div class="followed_channel" v-for="channel in userStore.userFollowed" :key="channel.to_id">
-        <SingleFollowedChannel :channel="channel" />
-      </div>
-
+  <div class="followed_container" v-if="userStore.userFollowed.length">
+    <div class="followed_channel" v-for="channel in userStore.userFollowed" :key="channel.to_id">
+      <SingleFollowedChannel :channel="channel" />
     </div>
 
+  </div>
 </template>
 <script setup lang="ts">
 import SingleFollowedChannel from '@/components/SingleFollowedChannel.vue';
@@ -18,10 +16,7 @@ const userStore = useUserStore()
 const { getFollowedChannels } = fetchFollows()
 
 onMounted(async () => {
-console.log("followed")
-getFollowedChannels()
-
-
+  getFollowedChannels()
 })
 
 </script>

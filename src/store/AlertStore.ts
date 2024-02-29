@@ -7,9 +7,6 @@ export const useAlertStore = defineStore("useAlertStore", () => {
         message: "",
         type: "",
     });
-    
-
-
     const showAlert = (message: string, type: string) => {
         alert.value.show = true;
         alert.value.message = message;
@@ -18,7 +15,7 @@ export const useAlertStore = defineStore("useAlertStore", () => {
         setTimeout(() => {
             alert.value.show = false;
         }
-        , 1000);
+            , 1000);
     };
     return { alert, showAlert };
-    })
+})

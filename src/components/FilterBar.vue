@@ -1,13 +1,13 @@
 <template>
     <div v-if="filtrList">
-        <span @click="categFilterStore.removeUsedFilters" > {{ filtrList }} X</span>
+        <span @click="categFilterStore.removeUsedFilters" > {{ filtrList }}</span>
     </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps, ref, onBeforeMount, watch } from 'vue';
 import { useCategFilter } from '@/store/CategFilterStore';
-const filtrList = ref<string | null>(null); // Use a ref to hold the userAvatar value
+const filtrList = ref<string | null>(null); 
 const categFilterStore = useCategFilter()
 
 filtrList.value = categFilterStore.getUsedFilters()

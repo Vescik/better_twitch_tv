@@ -6,9 +6,9 @@
           <div class="stream-modal_details">
             <img :src="userAvatar" alt="">
             <div>
-              <p>{{ streamModalStore.channelData?.channelTitle }}</p>
-              <p>{{ streamModalStore.channelData?.channelName }}</p>
-              <span>{{ streamModalStore.channelData?.channelViewers }}</span>
+              <p class="channel_title">{{ streamModalStore.channelData?.channelTitle }}</p>
+              <p class="channel_name">{{ streamModalStore.channelData?.channelName }}</p>
+              <span class="channel_viewer">{{ streamModalStore.channelData?.channelViewers }}</span>
             </div>
           </div>
         </div>
@@ -17,7 +17,6 @@
   </Transition>
   <transition name="fade">
     <div v-if="streamModalStore.showModal" @click="streamModalStore.closeModal" class="backdrop"></div>
-
   </transition>
 </template>
 
@@ -38,8 +37,6 @@ onBeforeMount(async () => {
   }
 });
 onMounted(() => {
-  console.log('mounted');
-  
   const embed = new Twitch.TwitchEmbed('twitch-player', {
     width: "100%",
     height: 600,
@@ -57,7 +54,20 @@ onUnmounted(() => {
 @import "../scss/components/stream_modal";
 @import "../scss/components/channel_thumbnail";
 
+.channel{
+  &_name{
+    background-color: grey;
+    padding: 1px 10px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  &_viewer{
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 5px;
 
+  }
+}
 
 #twitch-player {
 

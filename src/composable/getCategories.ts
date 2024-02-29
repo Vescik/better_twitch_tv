@@ -5,14 +5,12 @@ const fetchCategories =  () => {
 
     const { fetchTwitchData } = getTwitchData();
     const categoryStore = useCategories();
-    const url =  "https://api.twitch.tv/helix/games/top";
 
+    const url =  "https://api.twitch.tv/helix/games/top";
     const getCategoriesData = async () => {
         try{
             const data = await fetchTwitchData(url);
-            categoryStore.categoryList = data;
-            console.log(data);
-             
+            categoryStore.categoryList = data;             
         }catch(err){
             console.log(err);
         }

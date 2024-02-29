@@ -15,7 +15,6 @@
         <div class="content_container">
             <div>
                 <ChannelList />
-                <RouterView />
             </div>
         </div>
     </div>

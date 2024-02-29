@@ -12,15 +12,8 @@
         <span class="menu_title">Obserwowani</span>
       </router-link>
     </li>
-    <li>
-      <router-link :to="{ name: 'Settings' }" class="navbar_menu_item">
-        <span class="material-symbols-rounded">settings</span>
-        <span class="menu_title">Ustawienia</span>
-      </router-link>
-    </li>
       <AppAlert  />
   </ul>
- 
 </template>
 <script setup lang="ts">
 import { defineComponent, ref } from "vue";

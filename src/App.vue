@@ -50,20 +50,12 @@ onBeforeMount(async () => {
   const isTokenSet = accesTokenStore.isTokenSet()
   const getUrl = accesTokenStore.checkUrl()
 
-
-  if(accesTokenStore.tokenInput.length > 0){
+if(getUrl){
     accesTokenStore.setAccesToken()
-    console.log('token is set');
-    router.push('/')
-  }
-  else if(getUrl){
-    accesTokenStore.setAccesToken()
-    console.log('token is set');
     router.push('/')
   }else if( !isTokenSet || !isTokenValid){
     router.push('/login')
   }
-
 })
 
 

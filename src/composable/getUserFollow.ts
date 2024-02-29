@@ -15,7 +15,6 @@ const fetchFollows = () => {
     const url = `https://api.twitch.tv/helix/channels/followed?user_id=${userID}&first=100`
     try {
       const data = await fetchTwitchData(url);
-      console.log(data);
       userStore.setFollowData(data)
 
     } catch (err) {

@@ -30,12 +30,12 @@ const props = defineProps({
   }
 })
 const userAvatar = ref<string | null>(
-  null); // Use a ref to hold the userAvatar value
+  null);
 
 onBeforeMount(async () => {
   try {
-    const avatar = await props.categoryImg; // Await the userAvatar promise
-    userAvatar.value = avatar; // Assign the resolved value to the ref
+    const avatar = await props.categoryImg; 
+    userAvatar.value = avatar;
   } catch (error) {
     console.error(error);
   }

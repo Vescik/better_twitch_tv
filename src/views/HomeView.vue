@@ -12,16 +12,10 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 import ContentContainer from "@/components/ContentContainer.vue";
 import { useLanguagesStore } from '@/store/LanguageStore'
 import fetchChannels from '@/composable/getChannels'
-import { useCategories } from "@/store/CategoryStore";
 import { useAccesTokenStore } from "@/store/AccesTokenStore";
-import validateToken from "@/composable/getValid";
 import fetchUser from '@/composable/getSingleUser'
 import { useUserStore } from "@/store/UserStore";
 import router from "@/router";
-
-
-
-
 
 
 const langStore = useLanguagesStore()
@@ -30,33 +24,25 @@ const { getUserData } = fetchUser();
 const userStore = useUserStore()
 
 const { getChannelsData } = fetchChannels()
+
 onBeforeMount(async () => {
-  
-  const getUrl = accesTokenStore.checkUrl()
   const isTokenSet = accesTokenStore.isTokenSet()
-
-
-    if(isTokenSet){
-      const isTokenValid = await accesTokenStore.isTokenExp()
-      if(isTokenValid){
-        console.log('token is valid')
-        const ID = ref(userStore.user.id)
-        const userData = await getUserData(Number(ID.value))
-      userData.map((user:any) => {
+  if (isTokenSet) {
+    const isTokenValid = await accesTokenStore.isTokenExp()
+    if (isTokenValid) {
+      const ID = ref(userStore.user.id)
+      const userData = await getUserData(Number(ID.value))
+      userData.map((user: any) => {
         userStore.setUser(user)
       })
-        router.push('/')
-      }else{
-        router.push('/')
-      }
-    }else{
-      router.push('/login')
+      router.push('/')
+    } else {
+      router.push('/')
     }
-    
-  
-
+  } else {
+    router.push('/login')
+  }
   getChannelsData(langStore.selectedLang)
-
 })
 
 </script>

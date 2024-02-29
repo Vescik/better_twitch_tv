@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import getTwitchData from './getTwitchData';
 import { useChannels } from '@/store/ChannelStore';
 import { useLanguagesStore } from '@/store/LanguageStore';
-import { useCategories} from '@/store/CategoryStore';
+import { useCategories } from '@/store/CategoryStore';
 
 interface TwitchStream {
   id: string;
@@ -29,52 +29,37 @@ const fetchChannels = () => {
   const langStore = useLanguagesStore();
   const categoryStore = useCategories();
 
-  const handleUrl = {
-    byLang: {
-      lang: langStore.selectedLang,
-      url: `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=24`,
-    },
-    byGame: {
-      game: categoryStore.gameID,
-      url: `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=24`,
-    },
-    byDefault: {
-      url: `https://api.twitch.tv/helix/streams?first=24`,
-    },
-  };
+
   const handleChoice = (choice: string) => {
     if (choice === 'byLang') {
-      if(langStore.selectedLang === 'all') {
+      if (langStore.selectedLang === 'all') {
         return `https://api.twitch.tv/helix/streams?first=24`
-      }else{
+      } else {
         return `https://api.twitch.tv/helix/streams?language=${langStore.selectedLang}&first=24`
-      } 
-  } else if (choice === 'byGame') {
-      if(langStore.selectedLang === 'all') {
+      }
+    } else if (choice === 'byGame') {
+      if (langStore.selectedLang === 'all') {
         return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&first=24`
-      }else{
+      } else {
         return `https://api.twitch.tv/helix/streams?game_id=${categoryStore.gameID}&language=${langStore.selectedLang}&first=24`
       }
-  } else {
+    } else {
       return `https://api.twitch.tv/helix/streams?first=24&language=${langStore.selectedLang}`
-  }
+    }
   }
 
-  const getChannelsData = async (METHOD:string) => {
-    
-   // const USER_URL = `https://api.twitch.tv/helix/streams?language=${SELECTED_LANG}&first=20`;
+  const getChannelsData = async (METHOD: string) => {
     const URL = handleChoice(METHOD);
-
-    try{
+    try {
       const data = await fetchTwitchData(URL);
       channelStore.channelList = data
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
 
   };
-  
-  return { channels, getChannelsData };  
+
+  return { channels, getChannelsData };
 };
- 
+
 export default fetchChannels; 

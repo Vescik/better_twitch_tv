@@ -6,7 +6,6 @@
       <div class="channel_info">
         <div class="test">
           <img :src="userAvatar" alt="channel avatar" class="channel_avatar">
-
         </div>
         <div class="channel_details">
           <p :title="channelTitle" class="channel_title">{{ props.channelTitleShorted }}</p>
@@ -21,20 +20,18 @@
 
         </div>
       </div>
-      <div >
+      <div>
         <button @click="handleAddWatchTogether" class="channel_addMulti">
-        <span class="material-symbols-rounded">grid_view</span>
-        <p class="channel_addMulti-text">{{ toggleActive }}</p>
-      </button>
+          <span class="material-symbols-rounded">grid_view</span>
+          <p class="channel_addMulti-text">{{ toggleActive }}</p>
+        </button>
       </div>
-
-     
     </div>
   </transition>
 </template>
    
 <script setup lang="ts">
-import { defineProps, ref, onBeforeMount,computed } from 'vue';
+import { defineProps, ref, onBeforeMount, computed } from 'vue';
 import { useModalStore } from '@/store/StreamModalStore';
 import { useWatchTogetherStore } from '@/store/WatchTogetherStore';
 import { useAlertStore } from "@/store/AlertStore";
@@ -48,7 +45,6 @@ function checkChannelName(data, channelName) {
     return false;
   }
 
-  // Check if the channel name exists in the data.
   for (const item of data) {
     if (item.channelName === channelName) {
       return true;
@@ -100,23 +96,21 @@ const props = defineProps({
 
 const handleAddWatchTogether = () => {
   const isOnList = checkChannelName(watchTogetherStore.watchTogetherList, props.channelName);
-
-  if ( watchTogetherStore.watchTogetherList.length < 4) {
+  if (watchTogetherStore.watchTogetherList.length < 4) {
     if (!isOnList) {
       watchTogetherStore.addWatchTogether(props);
       alertStore.showAlert(`Dodano kanał do listy: ${props.channelName}`, 'success');
-    }else if(isOnList){
-        watchTogetherStore.removeWatchTogether(props.channelName);
-        alertStore.showAlert(`Usunięto kanał z listy: ${props.channelName}`, 'success');
+    } else if (isOnList) {
+      watchTogetherStore.removeWatchTogether(props.channelName);
+      alertStore.showAlert(`Usunięto kanał z listy: ${props.channelName}`, 'success');
     } else {
       alertStore.showAlert('Kanał jest już na liście', 'error');
     }
-
   } else {
-    if(isOnList){
+    if (isOnList) {
       watchTogetherStore.removeWatchTogether(props.channelName);
       alertStore.showAlert(`Usunięto kanał z listy: ${props.channelName}`, 'success');
-    }else{
+    } else {
       alertStore.showAlert('Maksymalna liczba kanałów na liście', 'error');
     }
   }
