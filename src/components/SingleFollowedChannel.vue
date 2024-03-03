@@ -1,7 +1,7 @@
 <template>
 
         <transition name="fade">
-            <div >
+            <div @click="streamModalStore.openModal(props)" >
             <img :src="channel.profileImg" alt="">
             <p>{{ props.channel.broadcaster_name }}</p>
             </div>
@@ -14,7 +14,9 @@
 import { onBeforeMount, ref } from "vue";
 import { defineProps } from "@/store/UserStore";
 import fetchUser from "@/composable/getSingleUser";
+import { useModalStore } from '@/store/StreamModalStore';
 
+const streamModalStore = useModalStore();
 
 const props = defineProps({
     channel: {
@@ -29,7 +31,7 @@ const channel = ref({
 
 })
 onBeforeMount(() =>{
-    console.log(props.channel)
+    console.log(props)
 }) 
  onBeforeMount(async () => {
    const x = await getUserData(Number(props.channel.broadcaster_id))

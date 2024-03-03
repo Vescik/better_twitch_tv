@@ -133,3 +133,15 @@ onBeforeMount(async () => {
 <style lang="scss">
 @import "../scss/components/channel_thumbnail";
 </style>
+
+{"id":"41978634696",
+"user_id":"36481935",
+"user_login":"esl_dota2",
+"user_name":"ESL_DOTA2",
+"game_id":"29595",
+"game_name":"Dota 2",
+"type":"live",
+"title":"LIVE: BetBoom Team vs. Xtreme Gaming - DreamLeague Season 22",
+"viewer_count":32773,
+"started_at":"2024-03-02T09:00:58Z",
+"language":"en","thumbnail_url":"https://static-cdn.jtvnw.net/previews-ttv/live_user_esl_dota2-{width}x{height}.jpg","tag_ids":[],"tags":["Esports","English"],"is_mature":false}
